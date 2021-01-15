@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/notification.css">
+    <link rel="stylesheet" media="print" href="styles/print.css">
+
     {if isset($dark)}
     <link rel="stylesheet" href="styles/dark.css">
     {/if}
@@ -42,6 +44,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="header_info">
                 <div class="header_info_text">
                        <h1>Prodej a pronájem nemovitostí v Praze</h1>
@@ -95,7 +98,6 @@
                                 </div>
                         </div>
                     </form>
-                </div>
                 </div>
             </div>
         </div>

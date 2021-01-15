@@ -1,0 +1,31 @@
+header{
+    display: none;
+}
+body{
+    color: #000;
+}
+
+.header{
+    display: none;
+}
+.bigform{
+    display: none;
+}
+#filterForm{
+    display: none;
+}
+.main_posts{
+    width: 100% !important;
+}
+.side_posts{
+    display: none;
+}
+.post_aside{
+    display: none;
+}
+.post_container{
+    width: 100% !important;
+}
+.post_slider{
+    display: none;
+}

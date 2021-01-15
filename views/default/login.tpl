@@ -31,7 +31,7 @@
                 </div>
                 
                 <div class="row">
-                    <button type="submit" name="login">Příhlásit</button>
+                    <input type="submit" name="login" value="Příhlásit">
                 </div>
             </form>
         </div>

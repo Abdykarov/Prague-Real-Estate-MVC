@@ -2,6 +2,9 @@
     <div class="wrapper">   
         <div class="row">
             <div class="post_main">
+                <div class="warning_js">
+                    <h4>Musíte zapnout JS. Jinak nebudete moci přidat inzerát</h4>
+                </div>
                 <form method="post" id="add_post_form" enctype="multipart/form-data">
                 <h1>Přidání inzerátu v Praze</h1>  
                 <div class="category_path">
@@ -54,7 +57,7 @@
                     <div class="row">
                         <div class="col s6">
                             <label for="price"><span class="must">*</span> Cena v kč</label>
-                            <input id="price" name="price" required pattern="[0-9]+" type="number" class="validate"
+                            <input id="price" name="price" required pattern="[0-9]+" type="text" class="validate"
                             value="{if isset($post_add_price)}{$post_add_price}{/if}">
                             <div class="error_handler price_error">
                                 {if isset($post_price_error)}
@@ -79,7 +82,7 @@
                     <div class="row">
                         <div class="col s6">
                             <label for="square"><span class="must">*</span> Plocha m2</label>
-                            <input id="square" name="square" required pattern="[0-9]+" type="number" class="validate"
+                            <input id="square" name="square" required pattern="[0-9]+" type="text" class="validate"
                             value="{if isset($post_add_square)}{$post_add_square}{/if}">
 
                             <div class="error_handler square_error">
@@ -92,7 +95,7 @@
                     <div class="row">
                         <div class="col s6">
                             <label for="desc"><span class="must">*</span> Popis inzerátu</label>
-                            <textarea class="materialize-textarea" required pattern="[A-Za-z0-9]+" name="desc" id="desc">{if isset($post_add_desc)}{$post_add_desc}{/if}</textarea>
+                            <textarea class="materialize-textarea" required name="desc" id="desc">{if isset($post_add_desc)}{$post_add_desc}{/if}</textarea>
                             <div class="error_handler desc_error">
                                 {if isset($post_desc_error)}
                                     {$post_desc_error}

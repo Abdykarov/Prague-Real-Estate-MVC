@@ -13,3 +13,10 @@ iframe{
 .input-field>label{
     top: -20px !important;
 }
+
+#add_post_form{
+    display: none;
+}
+.warning_js{
+    display: block;
+}

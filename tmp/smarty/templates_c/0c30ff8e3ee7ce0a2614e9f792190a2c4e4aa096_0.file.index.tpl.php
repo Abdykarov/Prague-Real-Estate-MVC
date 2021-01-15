@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-11 15:45:08
+/* Smarty version 3.1.36, created on 2021-01-15 05:59:14
   from '/home/abdykili/www/views/admin/index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ffc72843ad764_78419066',
+  'unifunc' => 'content_60012f3286c781_63761339',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0c30ff8e3ee7ce0a2614e9f792190a2c4e4aa096' => 
     array (
       0 => '/home/abdykili/www/views/admin/index.tpl',
-      1 => 1610379906,
+      1 => 1610690353,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ffc72843ad764_78419066 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60012f3286c781_63761339 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/home/abdykili/www/library/smarty/libs/plugins/modifier.truncate.php','function'=>'smarty_modifier_truncate',),));
 ?>
 <div class="sidebar" data-color="purple" data-background-color="black" data-image="images/sidebar-2.jpg">
@@ -83,6 +83,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'/home/abdykili/www/library/s
                   <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">                    
+                        <tr>
                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['posts']->value[0], 'item', false, 'key');
 $_smarty_tpl->tpl_vars['item']->do_else = true;
@@ -99,6 +100,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <th>
                         Edit post
                         </th>
+                        </tr>
                       </thead>
                       <tbody>
                         <?php

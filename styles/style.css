@@ -623,7 +623,7 @@ input[type=number] {
 .filters ul li {
   display: inline-block;
 }
-.filters button{
+.filters input[type='submit']{
   font-size: 15px;
   line-height: 20px;
   font-weight: 400;
@@ -637,13 +637,15 @@ input[type=number] {
   cursor: pointer;
   text-decoration: none;
 }
-.filters button.active{
+.filters input[type='submit'].active{
   color: #ff4d4d;
 }
-.filters button:hover{
+.filters input[type='submit']:hover{
   color:  #ff4d4d;
 }
-
+#map_iframe{
+  width: 100%;
+}
 
 .post_info a{
   color: #1d80d7;
@@ -773,16 +775,17 @@ input[type=number] {
 .login_form input{
   color: #fff;
 }
-.login_form button{
+.login_form input[type='submit']{
   width: 100%;
   background: #fff;
   padding: 12px 0;
+  color: #000;
   border: none;
   transition: all .2s;
   cursor: pointer;
   border-radius: 5px;
 }
-.login_form button:hover{
+.login_form input[type='submit']:hover{
   background: #ff4d4d;
   color: #fff;
 }
@@ -1444,4 +1447,10 @@ span.must{
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
+}
+.warning_js{
+  display: none;
+  color: red;
+  margin: 50px 50px;
+  font-weight: bold;
 }

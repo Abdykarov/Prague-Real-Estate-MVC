@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-12 03:14:49
+/* Smarty version 3.1.36, created on 2021-01-15 05:51:09
   from '/home/abdykili/www/views/default/post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ffd1429b90379_46978436',
+  'unifunc' => 'content_60012d4d55e3a8_00017361',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '632aa4b3e1b93637dfebf0f1864ffd0b465a86ea' => 
     array (
       0 => '/home/abdykili/www/views/default/post.tpl',
-      1 => 1610421288,
+      1 => 1610689867,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ffd1429b90379_46978436 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60012d4d55e3a8_00017361 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="post_section">
     <div class="wrapper">
         <div class="row">
@@ -38,7 +38,7 @@ $_smarty_tpl->tpl_vars['image']->do_else = false;
 ?>
                                 <li class="splide__slide">
                                     <img src="http://wa.toad.cz/~abdykili/images/postImages/<?php echo $_smarty_tpl->tpl_vars['image']->value;?>
-">
+" alt="image">
                                 </li>
                             <?php
 }
@@ -57,7 +57,7 @@ $_smarty_tpl->tpl_vars['image']->do_else = false;
 ?>
                                 <li class="splide__slide">
                                     <img src="http://wa.toad.cz/~abdykili/images/postImages/<?php echo $_smarty_tpl->tpl_vars['image']->value;?>
-">
+" alt="image">
                                 </li>
                             <?php
 }
@@ -129,7 +129,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 </span></div>
                         </div>
                     </div>
-                    <iframe width="100%" height="350" frameborder="0" scrolling="no" src="https://maps.google.it/maps?q=<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
+                    <iframe id="map_iframe" height="350" src="https://maps.google.it/maps?q=<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
 &output=embed"></iframe>
                 </div>
                 

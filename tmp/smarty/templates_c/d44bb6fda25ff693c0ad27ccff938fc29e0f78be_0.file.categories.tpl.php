@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-11 15:44:50
+/* Smarty version 3.1.36, created on 2021-01-15 06:00:50
   from '/home/abdykili/www/views/admin/categories.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ffc72727c9121_96603094',
+  'unifunc' => 'content_60012f92813b39_01739714',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd44bb6fda25ff693c0ad27ccff938fc29e0f78be' => 
     array (
       0 => '/home/abdykili/www/views/admin/categories.tpl',
-      1 => 1610379887,
+      1 => 1610690447,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ffc72727c9121_96603094 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60012f92813b39_01739714 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="sidebar" data-color="purple" data-background-color="black" data-image="images/sidebar-2.jpg">
       
       <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
@@ -81,7 +81,8 @@ function content_5ffc72727c9121_96603094 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">                    
-                        <?php
+                       <tr>
+                       <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['categories']->value[0], 'item', false, 'key');
 $_smarty_tpl->tpl_vars['item']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['key']->value => $_smarty_tpl->tpl_vars['item']->value) {
@@ -98,6 +99,7 @@ $_smarty_tpl->tpl_vars['item']->do_else = false;
                         <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>  
+                       </tr>
                       
                       </thead>
                       <tbody>

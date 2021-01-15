@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-15 04:52:49
+/* Smarty version 3.1.36, created on 2021-01-15 05:20:53
   from '/home/abdykili/www/views/default/index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_60011fa12b8909_19006038',
+  'unifunc' => 'content_600126350ce759_37454896',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'df39815d4102b6abff7aa383380025069a37fb65' => 
     array (
       0 => '/home/abdykili/www/views/default/index.tpl',
-      1 => 1610685470,
+      1 => 1610688048,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_60011fa12b8909_19006038 (Smarty_Internal_Template $_smarty_tpl) {
+function content_600126350ce759_37454896 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +31,8 @@ function content_60011fa12b8909_19006038 (Smarty_Internal_Template $_smarty_tpl)
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/notification.css">
+    <link rel="stylesheet" media="print" href="styles/print.css">
+
     <?php if ((isset($_smarty_tpl->tpl_vars['dark']->value))) {?>
     <link rel="stylesheet" href="styles/dark.css">
     <?php }?>
@@ -67,6 +69,7 @@ function content_60011fa12b8909_19006038 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                 </div>
             </div>
+
             <div class="header_info">
                 <div class="header_info_text">
                        <h1>Prodej a pronájem nemovitostí v Praze</h1>
@@ -132,7 +135,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 </div>
                         </div>
                     </form>
-                </div>
                 </div>
             </div>
         </div>

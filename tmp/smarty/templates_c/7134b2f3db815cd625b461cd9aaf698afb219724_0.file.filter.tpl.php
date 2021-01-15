@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-15 01:53:29
+/* Smarty version 3.1.36, created on 2021-01-15 05:30:28
   from '/home/abdykili/www/views/default/inc/filter.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_6000f5992334d8_25793267',
+  'unifunc' => 'content_60012874bc05d9_79119849',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7134b2f3db815cd625b461cd9aaf698afb219724' => 
     array (
       0 => '/home/abdykili/www/views/default/inc/filter.tpl',
-      1 => 1610674905,
+      1 => 1610688593,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6000f5992334d8_25793267 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60012874bc05d9_79119849 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="bigform">
     <div class="wrapper">
         <div class="row">
@@ -51,7 +51,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </div>
                     
                         <div class="input-field filter_price">
-                        <input placeholder="Cena od" type="number" pattern="[0-9]+" name="fromPrice" 
+                        <input placeholder="Cena od" type="text" pattern="[0-9]+" name="fromPrice" 
                             <?php if ((isset($_smarty_tpl->tpl_vars['fromPrice']->value))) {?>
                                 value="<?php echo $_smarty_tpl->tpl_vars['fromPrice']->value;?>
 "
@@ -61,7 +61,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             class="fromPrice validate">
                         </div>
                         <div class="input-field filter_price">
-                        <input placeholder="Cena do" type="number" pattern="[0-9]+" name="toPrice" 
+                        <input placeholder="Cena do" type="text" pattern="[0-9]+" name="toPrice" 
                             <?php if ((isset($_smarty_tpl->tpl_vars['toPrice']->value))) {?>
                                 value="<?php echo $_smarty_tpl->tpl_vars['toPrice']->value;?>
 "

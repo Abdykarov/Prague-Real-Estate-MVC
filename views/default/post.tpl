@@ -9,7 +9,7 @@
                         <ul class="splide__list">
                             {foreach $images as $image}
                                 <li class="splide__slide">
-                                    <img src="http://wa.toad.cz/~abdykili/images/postImages/{$image}">
+                                    <img src="http://wa.toad.cz/~abdykili/images/postImages/{$image}" alt="image">
                                 </li>
                             {/foreach}
                         </ul>
@@ -20,7 +20,7 @@
                         <ul class="splide__list">
                             {foreach $images as $image}
                                 <li class="splide__slide">
-                                    <img src="http://wa.toad.cz/~abdykili/images/postImages/{$image}">
+                                    <img src="http://wa.toad.cz/~abdykili/images/postImages/{$image}" alt="image">
                                 </li>
                             {/foreach}
                         </ul>
@@ -68,7 +68,7 @@
                             <div class="col s6 post_attr">Stav bytu<span>{$postData[0]['PostCondition']}</span></div>
                         </div>
                     </div>
-                    <iframe width="100%" height="350" frameborder="0" scrolling="no" src="https://maps.google.it/maps?q={$url}&output=embed"></iframe>
+                    <iframe id="map_iframe" height="350" src="https://maps.google.it/maps?q={$url}&output=embed"></iframe>
                 </div>
                 
             </div>

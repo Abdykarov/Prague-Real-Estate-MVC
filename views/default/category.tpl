@@ -29,19 +29,19 @@
                         <div class="col s8 forms_flex">
                             <form method="post">
                                 <input type="hidden" name="sortedType" value="byDateDESC">
-                                <button {if $sorted == 'byDateDESC'} class="active" {else} {/if} type="submut">Nejnovější</button>
+                                <input type="submit" {if $sorted == 'byDateDESC'} class="active" {else}{/if} value="Nejnovější">
                             </form>
                             <form method="post">
                                 <input type="hidden" name="sortedType" value="byDateASC">
-                                <button {if $sorted == 'byDateASC'} class="active" {else} {/if} type="submut">Nejstarší</button>
+                                <input type="submit" {if $sorted == 'byDateASC'} class="active" {else}{/if} value="Nejstarší">
                             </form>
                             <form method="post">
                                 <input type="hidden" name="sortedType" value="byPriceASC">
-                                <button {if $sorted == 'byPriceASC'} class="active" {else} {/if} type="submut">Nejlevnější</button>
+                                <input type="submit" {if $sorted == 'byPriceASC'} class="active" {else}{/if} value="Nejlevnější">
                             </form>
                             <form method="post">
                                 <input type="hidden" name="sortedType" value="byPriceDESC">
-                                <button {if $sorted == 'byPriceDESC'} class="active" {else} {/if} type="submut">Nejdražší</button>
+                                <input type="submit" {if $sorted == 'byPriceDESC'} class="active" {else}{/if} value="Nejdražší">
                             </form>
                         </div>
                         <div class="col s4">

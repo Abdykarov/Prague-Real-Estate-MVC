@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-15 04:52:36
+/* Smarty version 3.1.36, created on 2021-01-15 05:12:46
   from '/home/abdykili/www/views/default/inc/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_60011f9420b437_00203193',
+  'unifunc' => 'content_6001244e96b457_67965382',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3961ef442833116fe23a8ae199739c191b1dc8b6' => 
     array (
       0 => '/home/abdykili/www/views/default/inc/header.tpl',
-      1 => 1610685469,
+      1 => 1610687412,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_60011f9420b437_00203193 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6001244e96b457_67965382 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="cs-cz">
 <head>
@@ -35,6 +35,8 @@ function content_60011f9420b437_00203193 (Smarty_Internal_Template $_smarty_tpl)
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/notification.css">
     <link rel="stylesheet" href="styles/snow.css">
+    <link rel="stylesheet" media="print" href="styles/print.css">
+
     <?php if ((isset($_smarty_tpl->tpl_vars['dark']->value))) {?>
     <link rel="stylesheet" href="styles/dark.css">
     <?php }?>

@@ -17,7 +17,7 @@
                         </div>
                     
                         <div class="input-field filter_price">
-                        <input placeholder="Cena od" type="number" pattern="[0-9]+" name="fromPrice" 
+                        <input placeholder="Cena od" type="text" pattern="[0-9]+" name="fromPrice" 
                             {if isset($fromPrice)}
                                 value="{$fromPrice}"
                             {else}
@@ -26,7 +26,7 @@
                             class="fromPrice validate">
                         </div>
                         <div class="input-field filter_price">
-                        <input placeholder="Cena do" type="number" pattern="[0-9]+" name="toPrice" 
+                        <input placeholder="Cena do" type="text" pattern="[0-9]+" name="toPrice" 
                             {if isset($toPrice)}
                                 value="{$toPrice}"
                             {else}

@@ -34,10 +34,10 @@
                                 
                                 
                                 <div class="input-field filter_price">
-                                    <input placeholder="Cena od" type="number" pattern="[0-9]+" name="fromPrice" class="validate">
+                                    <input placeholder="Cena od" type="text" pattern="[0-9]+" name="fromPrice" class="validate">
                                 </div>
                                 <div class="input-field filter_price">
-                                    <input placeholder="do" type="number" pattern="[0-9]+" name="toPrice" class="validate">
+                                    <input placeholder="do" type="text" pattern="[0-9]+" name="toPrice" class="validate">
                                 </div>
                                 <div class="input-field">
                                     <button class="btn waves-effect waves-light" type="submit" name="filter">

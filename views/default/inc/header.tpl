@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/notification.css">
     <link rel="stylesheet" href="styles/snow.css">
+    <link rel="stylesheet" media="print" href="styles/print.css">
+
     {if isset($dark)}
     <link rel="stylesheet" href="styles/dark.css">
     {/if}

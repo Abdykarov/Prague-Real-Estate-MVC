@@ -34,7 +34,7 @@
                             <div class="row">
                                 <div class="col s6">
                                     <label for="phone">Telefon [Musi byt 9-0]</label>
-                                    <input id="phone" value="{$userPhone}"required pattern="[0-9]+"  name="new_phone" type="number" class="validate">
+                                    <input id="phone" value="{$userPhone}" required pattern="[0-9]+"  name="new_phone" type="text" class="validate">
                                     <div class="error_handler phone_error">
                                     {if isset($phone_err)}
                                         {$phone_err}

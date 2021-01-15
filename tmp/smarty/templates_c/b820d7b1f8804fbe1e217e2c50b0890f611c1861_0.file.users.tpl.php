@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-11 15:44:53
+/* Smarty version 3.1.36, created on 2021-01-15 06:01:10
   from '/home/abdykili/www/views/admin/users.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ffc7275d00014_42117080',
+  'unifunc' => 'content_60012fa60730e3_00284225',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b820d7b1f8804fbe1e217e2c50b0890f611c1861' => 
     array (
       0 => '/home/abdykili/www/views/admin/users.tpl',
-      1 => 1610379886,
+      1 => 1610690447,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ffc7275d00014_42117080 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60012fa60730e3_00284225 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="sidebar" data-color="purple" data-background-color="black" data-image="images/sidebar-2.jpg">
       
       <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
@@ -80,6 +80,7 @@ function content_5ffc7275d00014_42117080 (Smarty_Internal_Template $_smarty_tpl)
                 <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">                    
+                        <tr>
                         <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['users']->value[0], 'item', false, 'key');
 $_smarty_tpl->tpl_vars['item']->do_else = true;
@@ -96,6 +97,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <th>
                         Edit
                         </th>
+                        </tr>
                       </thead>
                       <tbody>
                         <?php

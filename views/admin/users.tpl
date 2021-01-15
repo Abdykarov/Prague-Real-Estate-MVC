@@ -56,6 +56,7 @@
                 <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">                    
+                        <tr>
                         {foreach key=key item=item from=$users[0]}
                             <th>
                               {$key}
@@ -64,6 +65,7 @@
                         <th>
                         Edit
                         </th>
+                        </tr>
                       </thead>
                       <tbody>
                         {foreach $users as $user}

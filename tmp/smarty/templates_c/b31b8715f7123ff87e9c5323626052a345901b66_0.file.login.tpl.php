@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-15 02:50:09
+/* Smarty version 3.1.36, created on 2021-01-15 05:23:57
   from '/home/abdykili/www/views/default/login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_600102e17edaf9_29853961',
+  'unifunc' => 'content_600126edc7ab22_75625298',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b31b8715f7123ff87e9c5323626052a345901b66' => 
     array (
       0 => '/home/abdykili/www/views/default/login.tpl',
-      1 => 1610679007,
+      1 => 1610688229,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_600102e17edaf9_29853961 (Smarty_Internal_Template $_smarty_tpl) {
+function content_600126edc7ab22_75625298 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="login_section">
     <div class="wrapper">
         <div class="login_form">
@@ -58,7 +58,7 @@ echo $_smarty_tpl->tpl_vars['user_login_email']->value;
                 </div>
                 
                 <div class="row">
-                    <button type="submit" name="login">Příhlásit</button>
+                    <input type="submit" name="login" value="Příhlásit">
                 </div>
             </form>
         </div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-11 15:08:10
+/* Smarty version 3.1.36, created on 2021-01-15 05:33:50
   from '/home/abdykili/www/views/default/category.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ffc69dae633b1_40688780',
+  'unifunc' => 'content_6001293ec17bd1_58620795',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4c8ed71718b491bb9f591e8302e4d03c3a46eaa7' => 
     array (
       0 => '/home/abdykili/www/views/default/category.tpl',
-      1 => 1610377689,
+      1 => 1610688829,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ffc69dae633b1_40688780 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6001293ec17bd1_58620795 (Smarty_Internal_Template $_smarty_tpl) {
 ?><section class="category_info">
     <div class="wrapper">
         <div class="breadcrumbs">
@@ -71,19 +71,23 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <div class="col s8 forms_flex">
                             <form method="post">
                                 <input type="hidden" name="sortedType" value="byDateDESC">
-                                <button <?php if ($_smarty_tpl->tpl_vars['sorted']->value == 'byDateDESC') {?> class="active" <?php } else { ?> <?php }?> type="submut">Nejnovější</button>
+                                <input type="submit" <?php if ($_smarty_tpl->tpl_vars['sorted']->value == 'byDateDESC') {?> class="active" <?php } else {
+}?> value="Nejnovější">
                             </form>
                             <form method="post">
                                 <input type="hidden" name="sortedType" value="byDateASC">
-                                <button <?php if ($_smarty_tpl->tpl_vars['sorted']->value == 'byDateASC') {?> class="active" <?php } else { ?> <?php }?> type="submut">Nejstarší</button>
+                                <input type="submit" <?php if ($_smarty_tpl->tpl_vars['sorted']->value == 'byDateASC') {?> class="active" <?php } else {
+}?> value="Nejstarší">
                             </form>
                             <form method="post">
                                 <input type="hidden" name="sortedType" value="byPriceASC">
-                                <button <?php if ($_smarty_tpl->tpl_vars['sorted']->value == 'byPriceASC') {?> class="active" <?php } else { ?> <?php }?> type="submut">Nejlevnější</button>
+                                <input type="submit" <?php if ($_smarty_tpl->tpl_vars['sorted']->value == 'byPriceASC') {?> class="active" <?php } else {
+}?> value="Nejlevnější">
                             </form>
                             <form method="post">
                                 <input type="hidden" name="sortedType" value="byPriceDESC">
-                                <button <?php if ($_smarty_tpl->tpl_vars['sorted']->value == 'byPriceDESC') {?> class="active" <?php } else { ?> <?php }?> type="submut">Nejdražší</button>
+                                <input type="submit" <?php if ($_smarty_tpl->tpl_vars['sorted']->value == 'byPriceDESC') {?> class="active" <?php } else {
+}?> value="Nejdražší">
                             </form>
                         </div>
                         <div class="col s4">

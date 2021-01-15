@@ -57,7 +57,8 @@
                 <div class="table-responsive">
                     <table class="table">
                       <thead class=" text-primary">                    
-                        {foreach key=key item=item from=$categories[0]}
+                       <tr>
+                       {foreach key=key item=item from=$categories[0]}
                             {if $key == 'CategoryName'}
                             <th>
                               {$key}
@@ -66,6 +67,7 @@
 
                             {/if}
                         {/foreach}  
+                       </tr>
                       
                       </thead>
                       <tbody>

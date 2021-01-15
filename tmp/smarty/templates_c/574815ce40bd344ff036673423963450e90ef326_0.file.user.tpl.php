@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-13 03:27:53
+/* Smarty version 3.1.36, created on 2021-01-15 05:45:29
   from '/home/abdykili/www/views/default/user.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ffe68b9db4955_69444865',
+  'unifunc' => 'content_60012bf9ee8747_16187346',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '574815ce40bd344ff036673423963450e90ef326' => 
     array (
       0 => '/home/abdykili/www/views/default/user.tpl',
-      1 => 1610498679,
+      1 => 1610689525,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ffe68b9db4955_69444865 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60012bf9ee8747_16187346 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="profile_section">
     <div class="wrapper">   
         <div class="row">
@@ -64,7 +64,7 @@ function content_5ffe68b9db4955_69444865 (Smarty_Internal_Template $_smarty_tpl)
                                 <div class="col s6">
                                     <label for="phone">Telefon [Musi byt 9-0]</label>
                                     <input id="phone" value="<?php echo $_smarty_tpl->tpl_vars['userPhone']->value;?>
-"required pattern="[0-9]+"  name="new_phone" type="number" class="validate">
+" required pattern="[0-9]+"  name="new_phone" type="text" class="validate">
                                     <div class="error_handler phone_error">
                                     <?php if ((isset($_smarty_tpl->tpl_vars['phone_err']->value))) {?>
                                         <?php echo $_smarty_tpl->tpl_vars['phone_err']->value;?>
