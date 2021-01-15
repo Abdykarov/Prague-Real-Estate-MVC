@@ -1,0 +1,172 @@
+body{
+    background: #070913 !important;
+}
+header{
+    border-bottom: 3px solid #fff !important;
+    background: url('https://images.unsplash.com/photo-1596811312397-9d95fa5ab60a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center center no-repeat;
+    background-size: cover;
+}
+
+.sub_nav ul li a{
+    color: #fff;
+}
+.category_block h3, .category_block a,.category_sub .row a{
+    color: #fff;
+}
+.header{
+    box-shadow: none;
+    border-bottom: 2px solid #fff;
+}
+.header .sub_nav ul li a{
+    color: #fff;
+}
+
+.header .nav ul li a{
+    color: #fff;
+}
+.category_title h1{
+    color: #fff;
+}
+
+.side_posts h3{
+    color: #fff;
+}
+
+.post_info a, .post_info span, .post_info p{
+    color: #fff;
+}
+.pagination ul li a{
+    color: #fff;
+}
+
+.subcategories a{
+    color: #fff;
+}
+
+.post_block h1{
+    color: #fff;
+}
+.post_contacts p{
+    color: #fff;
+}
+
+.post_contacts button{
+    color: #fff;
+}
+
+.post_block h4{
+    color: #fff;
+}
+.post_container .post_block p{
+    color: #fff;
+}
+
+.post_block h4{
+    color: #fff;
+}
+
+.post_attr span{
+    color: #fff;
+}
+
+.login_section{
+    border: none;
+}
+
+.user_main h2{
+    color: #fff;
+}
+
+.user_main h4{
+    color: #fff;
+}
+
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea{
+    color: #fff;
+}
+
+.user_sidebar ul li a{
+    color: #fff;
+}
+
+.user_block p{
+    color: #fff;
+}
+.message_section p{
+    color: #fff;
+    padding: 15px;
+    font-size: 17px;
+}
+
+.post_main h1{
+    color: #fff;
+}
+
+.post_block h3{
+    color: #fff;
+}
+
+
+.post_block ul li{
+    color: #fff;
+}
+
+.category_path ul li{
+    color: #fff;
+}
+
+.post_block label{
+    color: #fff;
+}
+
+.post_flex label{
+    color: #fff;
+}
+
+.post_block p{
+    color: #fff;
+}
+
+.form_center.active .post_block h4, .form_center.active .post_flex label{
+    color: #000;
+}
+.custom_fields{
+    font-size: 18px;
+}
+.sub_nav ul li a {
+    font-size: 20px;
+}
+.category_sub .row a {
+    font-size: 18px;
+}
+.category_sub > a {
+    font-size: 22px;
+}
+.header .sub_nav ul li a{
+    font-size: 18px;
+}
+.breadcrumbs ul li a{
+    font-size: 16px;
+}
+.subcategories a {
+    font-size: 19px;
+}
+.filters button{
+    font-size: 18px;
+}
+.post_info a {
+    font-size: 24px;
+}
+.post_info p {
+    font-size: 16px;
+}
+.post_attr{
+    font-size: 18px;
+}
+.post_container .post_block p {
+    font-size: 19px;
+}
+.input-field.filter_price input{
+    color: #000;
+    font-size: 18px;
+}

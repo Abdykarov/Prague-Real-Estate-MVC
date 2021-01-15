@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Nunito:wght@300;400;700&family=Lobster+Two:wght@400;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+i{
+  vertical-align: bottom;
+  margin-right: 2px;
+}
+h1,h2,h3,h4,h5,h6{
+    padding: 0;
+    margin: 0;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #ff4d4d;
+}
+
+.login_section{
+    padding-top: 10%;
+    height: 100%;
+}
+.login_form{
+    width: 400px;
+    margin: 0 auto;
+}
+.login_form h4{
+    color: #fff;
+}
+.login_form input{
+    width: 100%;
+    
+}
+
+.login_form button{
+    width: 100%;
+    margin-top: 10px;
+    background: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 7px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.fixed-plugin{
+    top: 0;
+}
+.admin_block{
+    margin-right: 100px;
+}
+
+.card-title a{
+    float: right;
+    padding: 5px 15px;
+    border-radius: 5px;
+    color: #000 !important;
+    background: #ffac0c;
+}
+.category_pick_form{
+    margin: 20px 0px;
+}
+.category_pick_form ul{
+    background: #fff;
+    list-style: none;
+}
+.category_pick_form ul li{
+    transition: all .2s;
+    color: #000;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 7px 15px;
+}
+.category_pick_form ul li:hover,.category_pick_form ul li.active{
+    background-color: #ff4d4d;
+    color: #fff;
+}
+.img_pick{
+    display: none;
+}
+
+.form_btn button{
+    background: #ff4d4d;
+    color: #fff;
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 0px;
+    font-size: 16px;
+}
+
+.post_edit_form button{
+    margin-top: 25px !important;
+  }
+.post_edit_form.green button{
+background-color: green !important;
+}
+  
+
+.error{
+    width: 100%;
+    font-size: 16px;
+    color: red;
+}
