@@ -14,5 +14,5 @@ $action = isset($_GET["action"]) ? ucfirst($_GET["action"]) : "Index";
 $core = new Core($smarty);
 
 // load page according to controller and action
-$core->loadPage($core,$controller,$action);
+$core->loadPage($core,strip_tags($controller),strip_tags($action));
 
