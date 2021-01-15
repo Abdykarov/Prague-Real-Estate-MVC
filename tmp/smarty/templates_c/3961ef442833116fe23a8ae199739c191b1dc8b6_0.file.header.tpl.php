@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-12 03:17:50
+/* Smarty version 3.1.36, created on 2021-01-15 04:52:36
   from '/home/abdykili/www/views/default/inc/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ffd14de112c78_08560711',
+  'unifunc' => 'content_60011f9420b437_00203193',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3961ef442833116fe23a8ae199739c191b1dc8b6' => 
     array (
       0 => '/home/abdykili/www/views/default/inc/header.tpl',
-      1 => 1610421468,
+      1 => 1610685469,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ffd14de112c78_08560711 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60011f9420b437_00203193 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="cs-cz">
 <head>
@@ -39,23 +39,8 @@ function content_5ffd14de112c78_08560711 (Smarty_Internal_Template $_smarty_tpl)
     <link rel="stylesheet" href="styles/dark.css">
     <?php }?>
     <noscript>
-        <style>
-            #filterForm {
-                display:none;
-            }
-            .post_slider{
-                display: none;
-            }
-            .preloader{
-                display: none;
-            }
-            iframe{
-                display: none;
-            }
-            .input-field>label{
-                top: -20px !important;
-            }
-        </style>
+        <link rel="stylesheet" href="styles/noscript.css">
+
     </noscript>
 </head>
 <body <?php if ((isset($_smarty_tpl->tpl_vars['snow']->value))) {?> class="let-it-snow" <?php }?>>

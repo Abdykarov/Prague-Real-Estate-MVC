@@ -15,23 +15,8 @@
     <link rel="stylesheet" href="styles/dark.css">
     {/if}
     <noscript>
-        <style>
-            #filterForm {
-                display:none;
-            }
-            .post_slider{
-                display: none;
-            }
-            .preloader{
-                display: none;
-            }
-            iframe{
-                display: none;
-            }
-            .input-field>label{
-                top: -20px !important;
-            }
-        </style>
+        <link rel="stylesheet" href="styles/noscript.css">
+
     </noscript>
 </head>
 <body {if isset($snow)} class="let-it-snow" {/if}>

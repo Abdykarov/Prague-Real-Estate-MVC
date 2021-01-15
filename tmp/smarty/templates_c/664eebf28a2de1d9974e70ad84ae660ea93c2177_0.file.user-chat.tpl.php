@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-13 04:45:54
+/* Smarty version 3.1.36, created on 2021-01-15 04:08:07
   from '/home/abdykili/www/views/default/user-chat.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ffe7b0274a498_82193823',
+  'unifunc' => 'content_60011527bc95c0_08643553',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '664eebf28a2de1d9974e70ad84ae660ea93c2177' => 
     array (
       0 => '/home/abdykili/www/views/default/user-chat.tpl',
-      1 => 1610511936,
+      1 => 1610679426,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ffe7b0274a498_82193823 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60011527bc95c0_08643553 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="profile_section">
     <div class="wrapper">   
         <div class="row">

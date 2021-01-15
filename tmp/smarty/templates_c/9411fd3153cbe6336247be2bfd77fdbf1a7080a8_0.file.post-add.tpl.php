@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-15 03:51:55
+/* Smarty version 3.1.36, created on 2021-01-15 04:33:30
   from '/home/abdykili/www/views/default/post-add.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_6001115b02f441_27163728',
+  'unifunc' => 'content_60011b1ae484d3_97171559',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9411fd3153cbe6336247be2bfd77fdbf1a7080a8' => 
     array (
       0 => '/home/abdykili/www/views/default/post-add.tpl',
-      1 => 1610682710,
+      1 => 1610685207,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6001115b02f441_27163728 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60011b1ae484d3_97171559 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="profile_section">
     <div class="wrapper">   
         <div class="row">
@@ -75,7 +75,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <div class="row">
                         <div class="col s6">
                             <label for="name"><span class="must">*</span> Název</label>
-                            <input id="name" name="name" type="text" class="validate"
+                            <input id="name" name="name" required pattern="[A-Za-z0-9]+" type="text" class="validate"
                             value="<?php if ((isset($_smarty_tpl->tpl_vars['post_add_name']->value))) {
 echo $_smarty_tpl->tpl_vars['post_add_name']->value;
 }?>">
@@ -90,7 +90,7 @@ echo $_smarty_tpl->tpl_vars['post_add_name']->value;
                     <div class="row">
                         <div class="col s6">
                             <label for="price"><span class="must">*</span> Cena v kč</label>
-                            <input id="price" name="price" type="text" class="validate"
+                            <input id="price" name="price" required pattern="[0-9]+" type="number" class="validate"
                             value="<?php if ((isset($_smarty_tpl->tpl_vars['post_add_price']->value))) {
 echo $_smarty_tpl->tpl_vars['post_add_price']->value;
 }?>">
@@ -105,7 +105,7 @@ echo $_smarty_tpl->tpl_vars['post_add_price']->value;
                     <div class="row">
                         <div class="col s6">
                             <label for="address"><span class="must">*</span> Adresa v Praze</label>
-                            <input id="address" name="address" type="text" class="validate"
+                            <input id="address" name="address" required pattern="[A-Za-z0-9]+" type="text" class="validate"
                             value="<?php if ((isset($_smarty_tpl->tpl_vars['post_add_address']->value))) {
 echo $_smarty_tpl->tpl_vars['post_add_address']->value;
 }?>">
@@ -121,7 +121,7 @@ echo $_smarty_tpl->tpl_vars['post_add_address']->value;
                     <div class="row">
                         <div class="col s6">
                             <label for="square"><span class="must">*</span> Plocha m2</label>
-                            <input id="square" name="square" type="text" class="validate"
+                            <input id="square" name="square" required pattern="[0-9]+" type="number" class="validate"
                             value="<?php if ((isset($_smarty_tpl->tpl_vars['post_add_square']->value))) {
 echo $_smarty_tpl->tpl_vars['post_add_square']->value;
 }?>">
@@ -137,7 +137,7 @@ echo $_smarty_tpl->tpl_vars['post_add_square']->value;
                     <div class="row">
                         <div class="col s6">
                             <label for="desc"><span class="must">*</span> Popis inzerátu</label>
-                            <textarea class="materialize-textarea" name="desc" id="desc"><?php if ((isset($_smarty_tpl->tpl_vars['post_add_desc']->value))) {
+                            <textarea class="materialize-textarea" required pattern="[A-Za-z0-9]+" name="desc" id="desc"><?php if ((isset($_smarty_tpl->tpl_vars['post_add_desc']->value))) {
 echo $_smarty_tpl->tpl_vars['post_add_desc']->value;
 }?></textarea>
                             <div class="error_handler desc_error">
@@ -259,7 +259,7 @@ echo $_smarty_tpl->tpl_vars['post_add_desc']->value;
                     <div class="file-field input-field col s6">
                             <div class="btn">
                                 <span>Files</span>
-                                <input type="file" id="files" name="file[]" multiple>
+                                <input type="file" required id="files" name="file[]" multiple>
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" name="file_input" type="text" placeholder="Upload one or more files">
@@ -271,10 +271,10 @@ echo $_smarty_tpl->tpl_vars['post_add_desc']->value;
                     </div>
                     </div>
                     <div class="error_handler file_error">
-                                <?php if ((isset($_smarty_tpl->tpl_vars['post_file_error']->value))) {?>
-                                    <?php echo $_smarty_tpl->tpl_vars['post_file_error']->value;?>
+                        <?php if ((isset($_smarty_tpl->tpl_vars['post_file_error']->value))) {?>
+                            <?php echo $_smarty_tpl->tpl_vars['post_file_error']->value;?>
 
-                                <?php }?>
+                        <?php }?>
                     </div>
                 </div>
             

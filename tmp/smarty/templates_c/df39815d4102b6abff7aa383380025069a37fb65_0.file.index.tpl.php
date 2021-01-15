@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-12 05:58:59
+/* Smarty version 3.1.36, created on 2021-01-15 04:52:49
   from '/home/abdykili/www/views/default/index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ffd3aa324c888_30910181',
+  'unifunc' => 'content_60011fa12b8909_19006038',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'df39815d4102b6abff7aa383380025069a37fb65' => 
     array (
       0 => '/home/abdykili/www/views/default/index.tpl',
-      1 => 1610431138,
+      1 => 1610685470,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ffd3aa324c888_30910181 (Smarty_Internal_Template $_smarty_tpl) {
+function content_60011fa12b8909_19006038 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,14 +36,6 @@ function content_5ffd3aa324c888_30910181 (Smarty_Internal_Template $_smarty_tpl)
     <?php }?>
     <noscript>
         <link rel="stylesheet" href="styles/noscript.css">
-        <style>
-            #filterForm {
-                display:none;
-            }
-            .preloader{
-                display: none;
-            }
-        </style>
     </noscript>
     <link rel="stylesheet" href="styles/snow.css">
     <title>Prague Real Estate | <?php echo $_smarty_tpl->tpl_vars['pageTitle']->value;?>

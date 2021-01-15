@@ -13,14 +13,6 @@
     {/if}
     <noscript>
         <link rel="stylesheet" href="styles/noscript.css">
-        <style>
-            #filterForm {
-                display:none;
-            }
-            .preloader{
-                display: none;
-            }
-        </style>
     </noscript>
     <link rel="stylesheet" href="styles/snow.css">
     <title>Prague Real Estate | {$pageTitle}</title>

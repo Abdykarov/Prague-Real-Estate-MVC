@@ -1,0 +1,15 @@
+#filterForm {
+    display:none;
+}
+.post_slider{
+    display: none;
+}
+.preloader{
+    display: none;
+}
+iframe{
+    display: none;
+}
+.input-field>label{
+    top: -20px !important;
+}

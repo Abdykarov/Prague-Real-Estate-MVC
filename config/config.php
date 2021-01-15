@@ -5,7 +5,7 @@
  * Define global variables (prefixes, db constants)
  */
 
-//> Константы для обращения к контроллерам
+//> constants
 define ('PathPrefix', 'controllers/');
 define ('PathPostfix', 'Controller.php');
 //<
@@ -17,18 +17,18 @@ define('DB_PASS','281001ilyas');
 define('DB_NAME','abdykili');
 define('DB_CHARSET','utf8');
 
-//> используемый шаблон 
+//> using template 
 $template = 'default';
 
-// пути к файлам шаблонов (*.tpl)
+// paths to templates (*.tpl)
 define ('TemplatePrefix', "views/{$template}/");
 define ('TemplatePostfix', '.tpl');
 
-// пути к файлам шаблонов в вебпространстве
+// paths in www 
 define ('TemplateWebPath', "/templates/{$template}/");
 //<
 
-//> Инициализация шаблонизатора Smarty
+//> Template Smarty init 
 // put full path to Smarty.class.php
 require('library/smarty/libs/Smarty.class.php');
 $smarty = new Smarty();

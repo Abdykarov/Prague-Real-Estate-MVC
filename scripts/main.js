@@ -193,6 +193,42 @@ $('#msg_form').submit(function(){
     }
 
 });
+$('#admin_login_form').submit(function(){
+    var email_error = 0
+    var pass_error = 0
+
+    if ($('#email').val() == '') {
+        $('.email_error').text('Please inform your email');
+        email_error = 1;
+    } else if(!validateEmail($('#email').val())){
+        $('.email_error').text('Špatný format email. Přiklad "user@gmail.com"');
+        email_error = 1;
+    }else{
+        $('.email_error').text('');
+        email_error = 0;
+    }
+
+    if ($('#password').val() == '') {
+        $('.pass_error').text('Please inform your password');
+        pass_error = 1;
+    } else if ($('#password').val().length < 6) {
+        $('.pass_error').text('Heslo musí být nejméně 6 znaků');
+        pass_error = 1;
+    }else if(!validateNumber($('#password').val())){
+        $('.pass_error').text('Špatný format. Přiklad "123456"');
+        pass_error = 1;
+    }else{
+        $('.pass_error').text('');
+        pass_error = 0;
+    }
+
+    if(email_error == 0 && pass_error == 0){
+
+    }else{
+        return false;
+    }
+
+});
 $('#admin_form').submit(function(){
     var msg_error = 0;
     var msg_error2 = 0;
@@ -235,8 +271,11 @@ $('#add_post_form').submit(function(){
     if($('#cat_hidden').val() == ''){
         $('.category_error').text('Please inform your category');
         category_error = 1
+    }else{
+        $('.category_error').text('');
+        category_error = 0
+
     }
-    
     if($('#name').val() == ''){
         $('.name_error').text('Please inform your name');
         name_error = 1
@@ -293,6 +332,33 @@ $('#add_post_form').submit(function(){
         $('.file_error').text('');
         file_error = 0
     }
+
+    if($('input:radio[name="owner"]').is(':checked') && $('input:radio[name="owner"]').val() != ''){
+        $('.owner_error').text('');
+        owner_error = 0
+    }else{
+        $('.owner_error').text('Vyberte prosím bod');
+        owner_error = 1
+    }
+
+
+    if($('input:radio[name="const"]').is(':checked') && $('input:radio[name="const"]').val() != ''){
+        $('.const_error').text('');
+        const_error = 0
+    }else{
+        $('.const_error').text('Vyberte prosím bod');
+        const_error = 1
+    }
+
+
+    if($('input:radio[name="cond"]').is(':checked') && $('input:radio[name="cond"]').val() != ''){
+        $('.cond_error').text('');
+        cond_error = 0
+    }else{
+        $('.cond_error').text('Vyberte prosím bod');
+        cond_error = 1
+    }
+
 
 
 

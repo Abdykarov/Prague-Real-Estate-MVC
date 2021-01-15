@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col s6">
                             <label for="name"><span class="must">*</span> Název</label>
-                            <input id="name" name="name" type="text" class="validate"
+                            <input id="name" name="name" required pattern="[A-Za-z0-9]+" type="text" class="validate"
                             value="{if isset($post_add_name)}{$post_add_name}{/if}">
                             <div class="error_handler name_error">
                                 {if isset($post_name_error)}
@@ -54,7 +54,7 @@
                     <div class="row">
                         <div class="col s6">
                             <label for="price"><span class="must">*</span> Cena v kč</label>
-                            <input id="price" name="price" type="text" class="validate"
+                            <input id="price" name="price" required pattern="[0-9]+" type="number" class="validate"
                             value="{if isset($post_add_price)}{$post_add_price}{/if}">
                             <div class="error_handler price_error">
                                 {if isset($post_price_error)}
@@ -66,7 +66,7 @@
                     <div class="row">
                         <div class="col s6">
                             <label for="address"><span class="must">*</span> Adresa v Praze</label>
-                            <input id="address" name="address" type="text" class="validate"
+                            <input id="address" name="address" required pattern="[A-Za-z0-9]+" type="text" class="validate"
                             value="{if isset($post_add_address)}{$post_add_address}{/if}">
 
                             <div class="error_handler address_error">
@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col s6">
                             <label for="square"><span class="must">*</span> Plocha m2</label>
-                            <input id="square" name="square" type="text" class="validate"
+                            <input id="square" name="square" required pattern="[0-9]+" type="number" class="validate"
                             value="{if isset($post_add_square)}{$post_add_square}{/if}">
 
                             <div class="error_handler square_error">
@@ -92,7 +92,7 @@
                     <div class="row">
                         <div class="col s6">
                             <label for="desc"><span class="must">*</span> Popis inzerátu</label>
-                            <textarea class="materialize-textarea" name="desc" id="desc">{if isset($post_add_desc)}{$post_add_desc}{/if}</textarea>
+                            <textarea class="materialize-textarea" required pattern="[A-Za-z0-9]+" name="desc" id="desc">{if isset($post_add_desc)}{$post_add_desc}{/if}</textarea>
                             <div class="error_handler desc_error">
                                 {if isset($post_desc_error)}
                                     {$post_desc_error}
@@ -208,7 +208,7 @@
                     <div class="file-field input-field col s6">
                             <div class="btn">
                                 <span>Files</span>
-                                <input type="file" id="files" name="file[]" multiple>
+                                <input type="file" required id="files" name="file[]" multiple>
                             </div>
                             <div class="file-path-wrapper">
                                 <input class="file-path validate" name="file_input" type="text" placeholder="Upload one or more files">
@@ -220,9 +220,9 @@
                     </div>
                     </div>
                     <div class="error_handler file_error">
-                                {if isset($post_file_error)}
-                                    {$post_file_error}
-                                {/if}
+                        {if isset($post_file_error)}
+                            {$post_file_error}
+                        {/if}
                     </div>
                 </div>
             

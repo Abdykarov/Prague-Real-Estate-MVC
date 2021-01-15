@@ -247,15 +247,46 @@ class LoginAction extends Admin{
                 'password_err' => '',
                 'email_err' => ''
             ];
+
+            if(empty($data['email'])){
+                $_SESSION['admin_email_err'] = 'Inform admin email';
+                $data['email_err'] = 'Inform admin email';
+            }else{
+                $_SESSION['admin_email_err'] = '';
+                $data['email_err'] = '';
+            }
+            if(empty($data['password'])){
+                $_SESSION['admin_password_err'] = 'Inform admin password';
+                $data['password_err'] = 'Inform admin password';
+            }else{
+                if(password_verify($data['password'], $this->userModel->getAdminPasswordByEmail($data['email']))){
+                    $_SESSION['admin_password_err'] = '';
+                    $data['password_err'] = '';
+                }else{
+                    $_SESSION['admin_password_err'] = 'Špatný email nebo heslo';
+                    $data['password_err'] = 'Špatný email nebo heslo';
+                }
+            }
             
-            if(password_verify($data['password'], $this->userModel->getAdminPasswordByEmail($data['email']))){
+            if(empty($data['password_err']) && empty($data['email_err'])){
                 $this->startSession($data);
                 Core::redirect('?controller=admin&action=index');
             }
             else{
-                Core::redirect('');
+                $_SESSION['admin_email_data'] = $data['email'];
+                Core::redirect('?controller=admin&action=login');
             }
 
+        }
+
+        if(isset($_SESSION['admin_email_data'])){
+            $this->controller->view('admin_email_data', $_SESSION['admin_email_data']);
+        }
+        if(isset($_SESSION['admin_password_err'])){
+            $this->controller->view('admin_password_err', $_SESSION['admin_password_err']);
+        }
+        if(isset($_SESSION['admin_email_err'])){
+            $this->controller->view('admin_email_err', $_SESSION['admin_email_err']);
         }
 
         $this->controller->view('pageTitle', 'Admin Auth Page');
