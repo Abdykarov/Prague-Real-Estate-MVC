@@ -22,8 +22,8 @@
                             <div class="row">
                             <input type="hidden" name="userId" value="{$userId}">
                                 <div class="col s6">
-                                    <label for="name">Jmemo [Musi byt A-Z a-z 9-0]</label>
-                                    <input id="name" value="{$userName}" required pattern="[A-Za-z0-9]+" title="Špatny format" name="new_name" type="text" class="validate">
+                                    <label for="name">Jmeno</label>
+                                    <input id="name" value="{$userName}" required pattern="[A-Za-z0-9\s]+" title="Špatny format" name="new_name" type="text" class="validate">
                                     <div class="error_handler name_error">
                                     {if isset($name_err)}
                                         {$name_err}
@@ -46,7 +46,7 @@
                             <div class="row">
                                 <div class=" col s6">
                                     <label for="old_pass">Staré heslo [Musi byt 9-0]</label>
-                                    <input id="old_pass" required pattern="[0-9]+" type="password" name="pass" class="validate">
+                                    <input id="old_pass" required pattern="[A-Za-z0-9\s]+" type="password" name="pass" class="validate">
                                     <div class="error_handler oldpass_error">
                                     {if isset($oldpass_err)}
                                         {$oldpass_err}
@@ -57,7 +57,7 @@
                             <div class="row">
                                 <div class="col s6">
                                     <label for="new_pass">Nové heslo [Musi byt 9-0]</label>
-                                    <input id="new_pass" required pattern="[0-9]+"  name="new_pass" type="password" class="validate">
+                                    <input id="new_pass" required pattern="[A-Za-z0-9\s]+"  name="new_pass" type="password" class="validate">
                                     <div class="error_handler newpass_error">
                                         {if isset($newpass_err)}
                                             {$newpass_err}

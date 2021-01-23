@@ -50,10 +50,7 @@ $('#change_form').submit(function(){
         $('.name_error').text('Please inform your name');
         name_error = 1;
     }
-    else if(!validateName($('#name').val())){
-        $('.name_error').text('Špatný format. Přiklad "Abdykarov1"');
-        name_error = 1;
-    } else{
+    else{
         $('.name_error').text('');
         name_error = 0;
     }
@@ -83,9 +80,6 @@ $('#change_form').submit(function(){
         old_pass_error = 1;
     } else if ($('#old_pass').val().length < 6) {
         $('.oldpass_error').text('Heslo musí být nejméně 6 znaků');
-        old_pass_error = 1;
-    }else if(!validateNumber($('#old_pass').val())){
-        $('.oldpass_error').text('Špatný format. Přiklad "123456"');
         old_pass_error = 1;
     }else{
         $('.oldpass_error').text('');
@@ -213,9 +207,6 @@ $('#admin_login_form').submit(function(){
         pass_error = 1;
     } else if ($('#password').val().length < 6) {
         $('.pass_error').text('Heslo musí být nejméně 6 znaků');
-        pass_error = 1;
-    }else if(!validateNumber($('#password').val())){
-        $('.pass_error').text('Špatný format. Přiklad "123456"');
         pass_error = 1;
     }else{
         $('.pass_error').text('');
@@ -393,22 +384,16 @@ $('#reg_form').submit(function () {
         $('.name_error').text('Please inform your name');
         name_error = 1;
     }
-    else if(!validateName($('#name').val())){
-        $('.name_error').text('Špatný format. Přiklad "Abdykarov1"');
-        name_error = 1;
-    } else{
+     else{
         $('.name_error').text('');
         name_error = 0;
     }
 
     if($('#last_name').val() == ''){
-        $('.surname_error').text('Please inform your email');
+        $('.surname_error').text('Please inform your surname');
         surname_error = 1;
     }
-    else if(!validateName($('#last_name').val())){
-            $('.surname_error').text('Špatný format. Přiklad "Abdykarov1"');
-            surname_error = 1; 
-    }else{
+    else{
         $('.surname_error').text('');
         surname_error = 0;
     }
@@ -446,9 +431,6 @@ $('#reg_form').submit(function () {
     } else if ($('#pass').val().length < 6) {
         $('.pass_error').text('Heslo musí být nejméně 6 znaků');
         pass_error = 1;
-    }else if(!validateNumber($('#pass').val())){
-        $('.pass_error').text('Špatný format. Přiklad "123456"');
-        pass_error = 1;
     }else{
         $('.pass_error').text('');
         pass_error = 0;
@@ -460,10 +442,6 @@ $('#reg_form').submit(function () {
     } else if ($('#pass_confirm').val().length < 6) {
         $('.pass_confirm_error').text('Heslo musí být nejméně 6 znaků');
         confirm_error = 1;
-    }else if(!validateNumber($('#pass_confirm').val())){
-        $('.pass_confirm_error').text('Špatný format. Přiklad "123456"');
-        confirm_error = 1;
-
     }else if($('#pass_confirm').val() != $('#pass').val()){
         $('.pass_confirm_error').text('Heslo neodpovídá!');
         confirm_error = 1;

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-15 05:45:29
+/* Smarty version 3.1.36, created on 2021-01-22 14:03:37
   from '/home/abdykili/www/views/default/user.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_60012bf9ee8747_16187346',
+  'unifunc' => 'content_600adb391efba0_25801220',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '574815ce40bd344ff036673423963450e90ef326' => 
     array (
       0 => '/home/abdykili/www/views/default/user.tpl',
-      1 => 1610689525,
+      1 => 1611324213,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_60012bf9ee8747_16187346 (Smarty_Internal_Template $_smarty_tpl) {
+function content_600adb391efba0_25801220 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="profile_section">
     <div class="wrapper">   
         <div class="row">
@@ -49,9 +49,9 @@ function content_60012bf9ee8747_16187346 (Smarty_Internal_Template $_smarty_tpl)
                             <input type="hidden" name="userId" value="<?php echo $_smarty_tpl->tpl_vars['userId']->value;?>
 ">
                                 <div class="col s6">
-                                    <label for="name">Jmemo [Musi byt A-Z a-z 9-0]</label>
+                                    <label for="name">Jmeno</label>
                                     <input id="name" value="<?php echo $_smarty_tpl->tpl_vars['userName']->value;?>
-" required pattern="[A-Za-z0-9]+" title="Špatny format" name="new_name" type="text" class="validate">
+" required pattern="[A-Za-z0-9\s]+" title="Špatny format" name="new_name" type="text" class="validate">
                                     <div class="error_handler name_error">
                                     <?php if ((isset($_smarty_tpl->tpl_vars['name_err']->value))) {?>
                                         <?php echo $_smarty_tpl->tpl_vars['name_err']->value;?>
@@ -77,7 +77,7 @@ function content_60012bf9ee8747_16187346 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="row">
                                 <div class=" col s6">
                                     <label for="old_pass">Staré heslo [Musi byt 9-0]</label>
-                                    <input id="old_pass" required pattern="[0-9]+" type="password" name="pass" class="validate">
+                                    <input id="old_pass" required pattern="[A-Za-z0-9\s]+" type="password" name="pass" class="validate">
                                     <div class="error_handler oldpass_error">
                                     <?php if ((isset($_smarty_tpl->tpl_vars['oldpass_err']->value))) {?>
                                         <?php echo $_smarty_tpl->tpl_vars['oldpass_err']->value;?>
@@ -89,7 +89,7 @@ function content_60012bf9ee8747_16187346 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="row">
                                 <div class="col s6">
                                     <label for="new_pass">Nové heslo [Musi byt 9-0]</label>
-                                    <input id="new_pass" required pattern="[0-9]+"  name="new_pass" type="password" class="validate">
+                                    <input id="new_pass" required pattern="[A-Za-z0-9\s]+"  name="new_pass" type="password" class="validate">
                                     <div class="error_handler newpass_error">
                                         <?php if ((isset($_smarty_tpl->tpl_vars['newpass_err']->value))) {?>
                                             <?php echo $_smarty_tpl->tpl_vars['newpass_err']->value;?>

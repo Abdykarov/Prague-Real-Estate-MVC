@@ -18,7 +18,7 @@ class Controller extends Core{
     }
     
     /**
-     * model
+     * model - includes model file
      *
      * @param  mixed $model
      * @return void
@@ -30,7 +30,7 @@ class Controller extends Core{
     }
     
     /**
-     * view
+     * view - create new variabl and sends data to the view layer
      *
      * @param  mixed $view
      * @param  mixed $data

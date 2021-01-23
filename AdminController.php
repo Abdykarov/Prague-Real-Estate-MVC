@@ -45,6 +45,7 @@ class Admin extends Core{
         $this->db = new Database();
         $this->userModel = $this->controller->model('User');
         $this->catModel = $this->controller->model('Category');
+        $this->pageModel = $this->controller->model('Page');
         $this->postModel = $this->controller->model('Post');
     }
     
@@ -55,6 +56,7 @@ class Admin extends Core{
      */
     public function loadDatabases(){
         $this->userModel->initDatabase($this->db);
+        $this->pageModel->initDatabase($this->db);
         $this->catModel->initDatabase($this->db);
         $this->postModel->initDatabase($this->db);
     }
@@ -135,11 +137,7 @@ class IndexAction extends Admin{
         $this->loadDatabases();
 
         $posts = $this->postModel->getAllPosts();
-        foreach($posts as &$post){
-            foreach($post as &$value){
-                $value = htmlspecialchars($value);
-            }
-        }
+
         $this->controller->view('pageTitle', 'Admin Page');
         $this->controller->view('posts', $posts);
         $this->controller->view('adminEmail', htmlspecialchars($_COOKIE['admin_email']));
@@ -185,10 +183,11 @@ class editPostAction extends Admin{
         $this->loadModels();
         $this->loadDatabases();
 
-        $postId = isset($_GET['id']) ? $_GET['id']: null;
+        $postId = isset($_GET['id']) ? htmlspecialchars($_GET['id']): null;
         if($postId == null){
             exit();
         }
+        $postId = htmlspecialchars($postId);
 
         if(isset($_POST['makeVip'])){
             $rs = $this->postModel->giveVip($postId);
@@ -255,8 +254,8 @@ class LoginAction extends Admin{
 
         if(isset($_POST['auth'])){
             $data = [
-                'email' => $_POST['email'],
-                'password' => $_POST['password'],
+                'email' => htmlspecialchars($_POST['email']),
+                'password' => htmlspecialchars($_POST['password']),
                 'password_err' => '',
                 'email_err' => ''
             ];
@@ -293,13 +292,13 @@ class LoginAction extends Admin{
         }
 
         if(isset($_SESSION['admin_email_data'])){
-            $this->controller->view('admin_email_data', htmlspecialchars($_SESSION['admin_email_data']));
+            $this->controller->view('admin_email_data', $_SESSION['admin_email_data']);
         }
         if(isset($_SESSION['admin_password_err'])){
-            $this->controller->view('admin_password_err', htmlspecialchars( $_SESSION['admin_password_err']));
+            $this->controller->view('admin_password_err', $_SESSION['admin_password_err']);
         }
         if(isset($_SESSION['admin_email_err'])){
-            $this->controller->view('admin_email_err',  htmlspecialchars($_SESSION['admin_email_err']));
+            $this->controller->view('admin_email_err', $_SESSION['admin_email_err']);
         }
 
         $this->controller->view('pageTitle', 'Admin Auth Page');
@@ -322,7 +321,53 @@ class LoginAction extends Admin{
 }
 
 
+/**
+ * PagesAction
+ * Action for pages interface
+ */
+class PagesAction extends Admin{
+    
+    /**
+     * __construct
+     *
+     * @param  mixed $smarty
+     * @return void
+     */
+    public function __construct($smarty, $controller) {
 
+        if(!$this->isLoggedIn()){
+            Core::redirect('?controller=admin&action=login');
+        }
+    
+        $this->loadSmarty($smarty);
+        $this->loadController($controller);
+        $this->loadDatabase();
+        $this->loadModels();
+        $this->loadDatabases();
+
+        $pages = $this->pageModel->getAllPages();
+
+        $this->controller->view('pageTitle', 'Admin page editing page');
+        $this->controller->view('pages', $pages);
+        $this->controller->view('adminEmail', htmlspecialchars($_COOKIE['admin_email']));
+        
+        $this->startEngine();
+    }
+
+    /**
+     * startEngine
+     * Method includes smarty templates
+     * @return void
+     */
+    public function startEngine() {
+
+
+        $this->loadAdminInclude('header');
+        $this->loadAdminTemplate('pages');
+        $this->loadAdminInclude('footer');
+
+    }
+}
 
 /**
  * CategoriesAction
@@ -350,7 +395,7 @@ class CategoriesAction extends Admin{
 
         $this->catModel->initPostModel($this->postModel, $this->db);
         $categories = $this->catModel->getAllCategories();
-        
+
         $this->controller->view('pageTitle', 'Admin categories page');
         $this->controller->view('categories', $categories);
         $this->controller->view('adminEmail', htmlspecialchars($_COOKIE['admin_email']));
@@ -399,7 +444,7 @@ class UsersAction extends Admin{
         $users = $this->userModel->getAllUsers();
 
         if(isset($_GET['deleteId'])){
-            $deleteId = $_GET['deleteId'];
+            $deleteId = htmlspecialchars($_GET['deleteId']);
             $rs = $this->userModel->deleteUser($deleteId);
             if($rs){
                 Core::redirect('?controller=admin&action=users');
@@ -407,11 +452,7 @@ class UsersAction extends Admin{
                 Core::deb('Chyba při odstranění');
             }
         }
-        foreach($users as &$user){
-            foreach($user as &$value){
-                $value = htmlspecialchars($value);
-            }
-        }
+
         $this->controller->view('pageTitle', 'Admin users page');
         $this->controller->view('users', $users);
         $this->controller->view('adminEmail', htmlspecialchars($_COOKIE['admin_email']));
@@ -433,6 +474,53 @@ class UsersAction extends Admin{
     }
 }
 
+
+/**
+ * CreatePageAction
+ * Action for creating new page
+ */
+class CreatePageAction extends Admin{
+    /**
+     * __construct
+     *
+     * @param  mixed $smarty
+     * @return void
+     */
+    public function __construct($smarty, $controller) {
+
+        if(!$this->isLoggedIn()){
+            Core::redirect('?controller=admin&action=login');
+        }
+    
+        $this->loadSmarty($smarty);
+        $this->loadController($controller);
+        $this->loadDatabase();
+        $this->loadModels();
+        $this->loadDatabases();
+
+        $pages = $this->pageModel->getAllPages();
+
+        $this->controller->view('pageTitle', 'Admin page editing page');
+        $this->controller->view('pages', $pages);
+        $this->controller->view('adminEmail', htmlspecialchars($_COOKIE['admin_email']));
+        
+        $this->startEngine();
+    }
+
+    /**
+     * startEngine
+     *
+     * @return void
+     */
+    public function startEngine() {
+
+
+        $this->loadAdminInclude('header');
+        $this->loadAdminTemplate('page-create');
+        $this->loadAdminInclude('footer');
+
+    }
+}
 
 
 /**
@@ -463,8 +551,8 @@ class CreateCategoryAction extends Admin{
 
         if(isset($_POST['createCategory'])){
             $data = [
-                'CategoryName' => $_POST['categoryName'],
-                'ParentCategoryId' => $_POST['parentCategory'],
+                'CategoryName' => htmlspecialchars($_POST['categoryName']),
+                'ParentCategoryId' => htmlspecialchars($_POST['parentCategory']),
                 'CategoryError' => '',
                 'NameErr' => ''
             ];
@@ -501,14 +589,13 @@ class CreateCategoryAction extends Admin{
 
             }
         }
-        
+
         if(isset($_SESSION['admin_cat_error'])){
             $this->controller->view('admin_cat_error', htmlspecialchars($_SESSION['admin_cat_error']));
         }
         if(isset($_SESSION['admin_name_error'])){
             $this->controller->view('admin_name_error', htmlspecialchars($_SESSION['admin_name_error']));
         }
-        
         $this->controller->view('pageTitle', 'Admin category creation page');
         $this->controller->view('categories', $categories);
         $this->controller->view('adminEmail', htmlspecialchars($_COOKIE['admin_email']));
@@ -560,7 +647,7 @@ class CheckParentAction extends Admin{
         $this->loadModels();
         $this->loadDatabases();
 
-        $categoryId = $_POST['id'];
+        $categoryId = htmlspecialchars($_POST['id']);
 
         $parent = $this->catModel->categoryHasParent($categoryId);
         if($parent){

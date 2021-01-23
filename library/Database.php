@@ -44,17 +44,16 @@ class Database
     
     /**
      * makeCamelCase
-     *
+     * Allows query to have capital letters
      * @return void
      */
     public function makeCamelCase(){
         $this->dbh->setAttribute( PDO::ATTR_CASE, PDO::CASE_NATURAL );
     }
 
-    // Prepare statement query    
     /**
      * query
-     *
+     * Prepare query for executement
      * @param  mixed $sql
      * @return void
      */
@@ -65,16 +64,15 @@ class Database
     
     /**
      * getStmt
-     *
+     * Returns stmt
      * @return void
      */
     public function getStmt(){
         return $this->stmt;
     }
 
-    // Bind values    
     /**
-     * bind
+     * bind - binds values, prevents sql injection
      *
      * @param  mixed $param
      * @param  mixed $value
@@ -102,10 +100,9 @@ class Database
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    // Execute the prepared statement    
     /**
      * execute
-     *
+     * Execute the prepared statement    
      * @return void
      */
     public function execute()
@@ -113,10 +110,9 @@ class Database
         return $this->stmt->execute();
     }
 
-    // Get result set as array of objects    
     /**
      * resultSet
-     *
+     * Get result set as array of objects
      * @return void
      */
     public function resultSet(){
@@ -124,10 +120,9 @@ class Database
         return $this->stmt->fetchAll();
     }
 
-    // Get single record as object    
     /**
      * single
-     *
+     * Get single record as object    
      * @return void
      */
     public function single(){

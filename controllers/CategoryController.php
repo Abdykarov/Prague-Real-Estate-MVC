@@ -1,7 +1,10 @@
 <?php
 
 /**
- * IndexAction - default loader class
+ * IndexAction
+ * Category's controller default action
+ * @param  mixed $core,$smarty
+ * @return void
  */
 
 class IndexAction extends Core{
@@ -13,7 +16,7 @@ class IndexAction extends Core{
 
     /**
      * __construct
-     *
+     * An automatically called function, which calls other functions within class    
      * @param  mixed $smarty
      * @return void
      */
@@ -34,13 +37,13 @@ class IndexAction extends Core{
 
         if(isset($_POST['filter'])){
             if(!empty($_POST['categoryId'])){
-                $url = $url . '&id=' . strip_tags($_POST['categoryId']);
+                $url = $url . '&id=' . $_POST['categoryId'];
             }
             if(!empty($_POST['fromPrice'])){
-                $url = $url . '&fromPrice=' . strip_tags($_POST['fromPrice']);
+                $url = $url . '&fromPrice=' . $_POST['fromPrice'];
             }        
             if(!empty($_POST['toPrice'])){
-                $url = $url . '&toPrice=' . strip_tags($_POST['toPrice']);
+                $url = $url . '&toPrice=' . $_POST['toPrice'];
             }
             Core::redirect($url);
         }
@@ -128,20 +131,48 @@ class IndexAction extends Core{
         $breadcrumbs = $this->cat->getBreadcrumbs($categoryId);
 
         if(isset($_COOKIE['user_email'])){
-            $this->controller->view('userEmail', $_COOKIE['user_email']);
+            $this->controller->view('userEmail', htmlspecialchars($_COOKIE['user_email']));
         }
-        $this->controller->view('pageTitle', strip_tags($categoryName));
+
+        foreach($mainCategories  as &$category){
+            foreach($category as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+        foreach($breadcrumbs  as &$bread){
+            foreach($bread as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+
+        foreach($posts as &$post){
+            foreach($post as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+        foreach($vipposts as &$vip){
+            foreach($vip as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+        foreach($childCategories as &$child){
+            foreach($child as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+        
+        $this->controller->view('pageTitle', htmlspecialchars($categoryName));
         $this->controller->view('mainCategories', $mainCategories);
         $this->controller->view('breadcrumbs', $breadcrumbs);
         $this->controller->view('childCategories', $childCategories);
-        $this->controller->view('categoryId', strip_tags($categoryId));
-        $this->controller->view('categoryName', strip_tags($categoryName));
+        $this->controller->view('categoryId', htmlspecialchars($categoryId));
+        $this->controller->view('categoryName', htmlspecialchars($categoryName));
         $this->controller->view('paginationUrl', $paginationUrl);
         $this->controller->view('posts', $posts);
         $this->controller->view('vipposts', $vipposts);
-        $this->controller->view('page', strip_tags($page));
-        $this->controller->view('sorted', $sorted);
-        $this->controller->view('pageCount', strip_tags($pageCount));
+        $this->controller->view('page', htmlspecialchars($page));
+        $this->controller->view('sorted', htmlspecialchars($sorted));
+        $this->controller->view('pageCount', htmlspecialchars($pageCount));
         
         $this->startEngine();
     }
@@ -154,13 +185,14 @@ class IndexAction extends Core{
 
     public function SanitizeUrl($url)
     {
-        return htmlentities($url);
+        return htmlspecialchars($url);
     }
 
     
-    /**
-     * loadSmarty
-     *
+   /**
+     * loadSmarty 
+     * Takes a smarty class from library/Core.php -> loadPage() method
+     * Assigns a smarty class to a local variable
      * @param  mixed $smarty
      * @return void
      */
@@ -168,9 +200,10 @@ class IndexAction extends Core{
         $this->smarty = $smarty;
     }
     
-    /**
+      /**
      * loadController
-     *
+     * Takes a controller from library/Core.php -> loadPage() method
+     * Assigns a controller object to a local variable
      * @param  mixed $controller
      * @return void
      */
@@ -180,7 +213,7 @@ class IndexAction extends Core{
         
     /**
      * loadModels
-     *
+     * Method loads needed models and create new local variable - db 
      * @return void
      */
     public function loadModels(){
@@ -191,7 +224,7 @@ class IndexAction extends Core{
     
     /**
      * loadDatabases
-     *
+     * Method sends local db to category model
      * @return void
      */
     public function loadDatabases(){
@@ -201,7 +234,7 @@ class IndexAction extends Core{
     
     /**
      * loadDatabase
-     *
+     * Method sends local db to category model
      * @return void
      */
     public function loadDatabase(){
@@ -209,7 +242,7 @@ class IndexAction extends Core{
     }    
     /**
      * getCategoryId
-     *
+     * Gets category id via url
      * @return void
      */
     public function getCategoryId() {
@@ -219,7 +252,7 @@ class IndexAction extends Core{
     
     /**
      * startEngine
-     *
+     * Method assign variables and sends them to view layer
      * @return void
      */
     public function startEngine() {
@@ -231,6 +264,10 @@ class IndexAction extends Core{
 }
 
 
+/**
+ * FilterAction
+ * Filter action - works when user search posts using filter form
+ */
 class FilterAction extends IndexAction{
 
     /**
@@ -250,30 +287,30 @@ class FilterAction extends IndexAction{
         $categoryPosts = null;
         $categoryId = $this->getCategoryId();
         if($categoryId == null) exit();
-        $fromPrice = isset($_GET['fromPrice'])? strip_tags( $_GET['fromPrice']) : '';
-        $toPrice = isset($_GET['toPrice']) ? strip_tags($_GET['toPrice']) : '';
-        $owner = isset($_GET['owner']) ? strip_tags($_GET['owner']) : '';
-        $cond = isset($_GET['cond']) ? strip_tags($_GET['cond']) : '';
-        $const = isset($_GET['const']) ? strip_tags($_GET['const']) : '';
-        $page = isset($_GET['page']) ? strip_tags($_GET['page']) : 1;
-        $sorted = isset($_GET['sorted']) ? strip_tags($_GET['sorted']) : 'byDateDESC';
-        $categoryId = isset($_POST['id']) ? strip_tags($_POST['id']) : $categoryId;
+        $fromPrice = isset($_GET['fromPrice'])?  $_GET['fromPrice'] : '';
+        $toPrice = isset($_GET['toPrice']) ? $_GET['toPrice'] : '';
+        $owner = isset($_GET['owner']) ? $_GET['owner'] : '';
+        $cond = isset($_GET['cond']) ? $_GET['cond'] : '';
+        $const = isset($_GET['const']) ? $_GET['const'] : '';
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $sorted = isset($_GET['sorted']) ? $_GET['sorted'] : 'byDateDESC';
+        $categoryId = isset($_POST['id']) ? $_POST['id'] : $categoryId;
         $url = '?controller=category&action=filter&id='.$categoryId;
         if(isset($_POST['filter'])){
             if(!empty($_POST['fromPrice'])){
-                $url = $url . '&fromPrice=' . strip_tags($_POST['fromPrice']);
+                $url = $url . '&fromPrice=' . $_POST['fromPrice'];
             }        
             if(!empty($_POST['toPrice'])){
-                $url = $url . '&toPrice=' . strip_tags($_POST['toPrice']);
+                $url = $url . '&toPrice=' . $_POST['toPrice'];
             }
             if(!empty($_POST['owner'])){
-                $url = $url . '&owner=' . strip_tags($_POST['owner']);
+                $url = $url . '&owner=' . $_POST['owner'];
             }
             if(!empty($_POST['cond'])){
-                $url = $url . '&cond=' . strip_tags($_POST['cond']);
+                $url = $url . '&cond=' . $_POST['cond'];
             }
             if(!empty($_POST['const'])){
-                $url = $url . '&const=' . strip_tags($_POST['const']);
+                $url = $url . '&const=' . $_POST['const'];
             }
             Core::redirect($url);
         }
@@ -283,16 +320,16 @@ class FilterAction extends IndexAction{
         if(isset($_POST['sortedType'])){
             $url = "$_SERVER[REQUEST_URI]";
             if(isset($_GET['sorted'])){
-                $strPage = '&sorted='.strip_tags($_GET['sorted']);
+                $strPage = '&sorted='.$_GET['sorted'];
                 $url = str_replace($strPage, "", $url);
                 $url = str_replace('/~abdykili/', "", $url);
             }
             if(isset($_GET['page'])){
-                $strPage = '&page='.strip_tags($_GET['page']);
+                $strPage = '&page='.$_GET['page'];
                 $url = str_replace($strPage, "", $url);
                 $url = str_replace('/~abdykili/', "", $url);
             }
-            $url = $url . '&sorted='.strip_tags($_POST['sortedType']);
+            $url = $url . '&sorted='.$_POST['sortedType'];
             $url = str_replace('/~abdykili/', "", $url);
 
             Core::redirect($url);
@@ -330,7 +367,7 @@ class FilterAction extends IndexAction{
 
         $paginationUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         if(isset($_GET['page'])){
-            $strPage = '&page='. strip_tags($_GET['page']);
+            $strPage = '&page='. $_GET['page'];
             $paginationUrl = str_replace($strPage, "", $paginationUrl);
             $paginationUrl = $paginationUrl . "&page=";
         }
@@ -350,37 +387,72 @@ class FilterAction extends IndexAction{
         $this->checkStyles($thisUrl);
         
         if(isset($_COOKIE['snow'])){
-            $this->controller->view('snow', strip_tags($_COOKIE['snow']));
+            $this->controller->view('snow', htmlspecialchars($_COOKIE['snow']));
         }
         if(isset($_COOKIE['dark'])){
-            $this->controller->view('dark', strip_tags($_COOKIE['dark']));
+            $this->controller->view('dark', htmlspecialchars($_COOKIE['dark']));
         }
 
         $this->controller->view('pageTitle', $categoryName);
         if(isset($_GET['fromPrice'])){
-            $this->controller->view('fromPrice', strip_tags($_GET['fromPrice']));
+            $this->controller->view('fromPrice', htmlspecialchars($_GET['fromPrice']));
         }
         
         if(isset($_GET['toPrice'])){
-            $this->controller->view('toPrice', strip_tags($_GET['toPrice']));
+            $this->controller->view('toPrice', htmlspecialchars($_GET['toPrice']));
+        }
+
+        if(isset($_COOKIE['user_email'])){
+            $this->controller->view('userEmail', htmlspecialchars($_COOKIE['user_email']));
+        }       
+        foreach($mainCategories  as &$cat){
+            foreach($cat as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+        foreach($categoryFriends  as &$friend){
+            foreach($friend as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+        foreach($category as &$value){
+            $value = htmlspecialchars($value);
+        }
+        foreach($breadcrumbs  as &$bread){
+            foreach($bread as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+
+        foreach($posts as &$post){
+            foreach($post as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+        foreach($vipposts as &$vip){
+            foreach($vip as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }
+        foreach($childCategories as &$child){
+            foreach($child as &$value){
+                $value = htmlspecialchars($value);
+            }
         }
 
 
-        if(isset($_COOKIE['user_email'])){
-            $this->controller->view('userEmail', strip_tags($_COOKIE['user_email']));
-        }       
         $this->controller->view('mainCategories', $mainCategories);
         $this->controller->view('category', $category);
-        $this->controller->view('pageCount', strip_tags($pageCount));
-        $this->controller->view('page', strip_tags($page));
+        $this->controller->view('pageCount', htmlspecialchars($pageCount));
+        $this->controller->view('page', htmlspecialchars($page));
         $this->controller->view('vipposts', $vipposts);
-        $this->controller->view('sorted', strip_tags($sorted));
-        $this->controller->view('paginationUrl', strip_tags($paginationUrl));
+        $this->controller->view('sorted', htmlspecialchars($sorted));
+        $this->controller->view('paginationUrl', htmlspecialchars($paginationUrl));
         $this->controller->view('categoryFriends', $categoryFriends);
         $this->controller->view('breadcrumbs', $breadcrumbs);
         $this->controller->view('childCategories', $childCategories);
-        $this->controller->view('categoryId', strip_tags($categoryId));
-        $this->controller->view('categoryName', strip_tags($categoryName));
+        $this->controller->view('categoryId', htmlspecialchars($categoryId));
+        $this->controller->view('categoryName', htmlspecialchars($categoryName));
         $this->controller->view('posts', $posts);
         
         $this->startEngine();
@@ -388,12 +460,12 @@ class FilterAction extends IndexAction{
 
     public function SanitizeUrl($url)
     {
-        return htmlentities($url);
+        return htmlspecialchars($url);
     }
 
     /**
      * startEngine
-     *
+     * Method assign variables and sends them to view layer
      * @return void
      */
     public function startEngine() {

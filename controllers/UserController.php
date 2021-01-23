@@ -2,6 +2,7 @@
 
 /**
  * User
+ * General user controller
  */
 class UserController extends Core {
     private $db;
@@ -9,9 +10,10 @@ class UserController extends Core {
     public $postModel;
     public $smarty;
     
-    /**
-     * loadSmarty
-     *
+     /**
+     * loadSmarty 
+     * Takes a smarty class from library/Core.php -> loadPage() method
+     * Assigns a smarty class to a local variable
      * @param  mixed $smarty
      * @return void
      */
@@ -21,9 +23,10 @@ class UserController extends Core {
     
     /**
      * loadController
-     *
+     * Takes a controller from library/Core.php -> loadPage() method
+     * Assigns a controller object to a local variable
      * @param  mixed $controller
-     * @return void 
+     * @return void
      */
     public function loadController($controller){
         $this->controller = $controller;
@@ -31,7 +34,7 @@ class UserController extends Core {
         
     /**
      * loadModels
-     *
+     * Method loads needed models and create new local variable - db 
      * @return void
      */
     public function loadModels(){
@@ -42,7 +45,7 @@ class UserController extends Core {
     
     /**
      * loadDatabases
-     *
+     * Method sends local db to category model
      * @return void
      */
     public function loadDatabases(){
@@ -52,7 +55,7 @@ class UserController extends Core {
     
     /**
      * loadDatabase
-     *
+     * Method includes database 
      * @return void
      */
     public function loadDatabase(){
@@ -103,6 +106,10 @@ class UserController extends Core {
 
 
 
+/**
+ * InitMessageAction
+ * Action works when user create new message branch
+ */
 class InitMessageAction extends UserController{
      
     /**
@@ -133,15 +140,15 @@ class InitMessageAction extends UserController{
         $this->checkStyles($thisUrl);
         
         if(isset($_COOKIE['snow'])){
-            $this->controller->view('snow', $_COOKIE['snow']);
+            $this->controller->view('snow', htmlspecialchars($_COOKIE['snow']));
         }
         if(isset($_COOKIE['dark'])){
-            $this->controller->view('dark', $_COOKIE['dark']);
+            $this->controller->view('dark', htmlspecialchars($_COOKIE['dark']));
         }
 
-        $userId = strip_tags($_POST['userId']);
-        $authorId = strip_tags($_POST['postAuthor']);
-        $message = strip_tags($_POST['message']);
+        $userId = $_POST['userId'];
+        $authorId = $_POST['postAuthor'];
+        $message = $_POST['message'];
         $date = date("d.m.y H:i:s");
 
         if($userId == $authorId){
@@ -175,6 +182,10 @@ class InitMessageAction extends UserController{
     
 }
 
+/**
+ * StartChatAction
+ * Action for chat between users
+ */
 class StartChatAction extends UserController{
     
     /**
@@ -204,27 +215,29 @@ class StartChatAction extends UserController{
         $this->checkStyles($thisUrl);
         
         if(isset($_COOKIE['snow'])){
-            $this->controller->view('snow', $_COOKIE['snow']);
+            $this->controller->view('snow', htmlspecialchars($_COOKIE['snow']));
         }
         if(isset($_COOKIE['dark'])){
-            $this->controller->view('dark', $_COOKIE['dark']);
+            $this->controller->view('dark', htmlspecialchars($_COOKIE['dark']));
         }
 
 
-        $userId = strip_tags($_COOKIE['user_id']);
-        $authorId = strip_tags($_POST['postAuthorId']);
+        $userId = $_COOKIE['user_id'];
+        $authorId = $_POST['postAuthorId'];
 
         if($userId == $authorId){
             Core::deb("Nemužete psat sam sebe");
         }
         
         $postAuthor = $this->userModel->getUser($authorId);
-    
+        foreach($postAuthor as &$value) {
+            $value = htmlspecialchars($value);
+        }
         $this->controller->view('pageTitle', 'Start Chat Page');
         $this->controller->view('postAuthor', $postAuthor);
-        $this->controller->view('userName', strip_tags($_COOKIE['user_name']));
-        $this->controller->view('userEmail', strip_tags($_COOKIE['user_email']));
-        $this->controller->view('userId', strip_tags($userId));
+        $this->controller->view('userName', htmlspecialchars($_COOKIE['user_name']));
+        $this->controller->view('userEmail', htmlspecialchars($_COOKIE['user_email']));
+        $this->controller->view('userId', htmlspecialchars($userId));
         
         $this->startEngine();
     }
@@ -242,6 +255,10 @@ class StartChatAction extends UserController{
     }
 }
 
+/**
+ * ChatPageAction
+ * Action for chat interface
+ */
 class ChatPageAction extends UserController{
 
      /**
@@ -267,7 +284,7 @@ class ChatPageAction extends UserController{
         $this->loadModels();
         $this->loadDatabases();
 
-        $groupMessageId = strip_tags($_GET['id']);
+        $groupMessageId = $_GET['id'];
         $userId = $_COOKIE['user_id'];
         $partnerId = '';
 
@@ -277,15 +294,15 @@ class ChatPageAction extends UserController{
         $this->checkStyles($thisUrl);
         
         if(isset($_COOKIE['snow'])){
-            $this->controller->view('snow', $_COOKIE['snow']);
+            $this->controller->view('snow', htmlspecialchars($_COOKIE['snow']));
         }
         if(isset($_COOKIE['dark'])){
-            $this->controller->view('dark', $_COOKIE['dark']);
+            $this->controller->view('dark', htmlspecialchars($_COOKIE['dark']));
         }
 
 
         if(isset($_POST['messageText'])){
-            $message = strip_tags($_POST['messageText']);
+            $message = $_POST['messageText'];
             $date = date("d.m.y H:i:s");
         
             $data = [
@@ -320,18 +337,26 @@ class ChatPageAction extends UserController{
         }else{
             $partnerId = $messageGroup['ToUser'];
         }
-        $partner = $this->userModel->getUser($partnerId);        
+        $partner = $this->userModel->getUser($partnerId);     
+        foreach($messages as &$msg){
+            foreach($msg as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }   
+        foreach($partner as &$value){
+            $value = htmlspecialchars($value);
+        }
 
         $this->controller->view('pageTitle', 'Chat Page');
         $this->controller->view('messages', $messages);
         $this->controller->view('partner', $partner);
         if(isset($_SESSION['messageError'])){
-            $this->controller->view('msgError', $_SESSION['messageError']);
+            $this->controller->view('msgError', htmlspecialchars($_SESSION['messageError']));
         }
-        $this->controller->view('groupMessageId', strip_tags($groupMessageId));
-        $this->controller->view('userName', strip_tags($_COOKIE['user_name']));
-        $this->controller->view('userEmail', strip_tags($_COOKIE['user_email']));
-        $this->controller->view('userId', strip_tags($_COOKIE['user_id']));
+        $this->controller->view('groupMessageId', htmlspecialchars($groupMessageId));
+        $this->controller->view('userName', htmlspecialchars($_COOKIE['user_name']));
+        $this->controller->view('userEmail', htmlspecialchars($_COOKIE['user_email']));
+        $this->controller->view('userId', htmlspecialchars($_COOKIE['user_id']));
         
         $this->startEngine();
     }
@@ -353,6 +378,7 @@ class ChatPageAction extends UserController{
 
 /**
  * ChatAction
+ * Action for chats page
  */
 class ChatAction extends UserController{  
       
@@ -386,13 +412,19 @@ class ChatAction extends UserController{
             $this->controller->view('dark', $_COOKIE['dark']);
         }
 
-    
+        
         $messageGroups = $this->userModel->getMessagesGroup($_COOKIE['user_id']);
+        foreach($messageGroups as &$msg){
+            foreach($msg as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }  
+        
         $this->controller->view('pageTitle', 'Chat Page');
         $this->controller->view('messageGroups', $messageGroups);
-        $this->controller->view('userName', strip_tags($_COOKIE['user_name']));
-        $this->controller->view('userEmail', strip_tags($_COOKIE['user_email']));
-        $this->controller->view('userId', strip_tags($_COOKIE['user_id']));
+        $this->controller->view('userName', htmlspecialchars($_COOKIE['user_name']));
+        $this->controller->view('userEmail', htmlspecialchars($_COOKIE['user_email']));
+        $this->controller->view('userId', htmlspecialchars($_COOKIE['user_id']));
         
         $this->startEngine();
     }
@@ -411,6 +443,7 @@ class ChatAction extends UserController{
 
 /**
  * PostAction
+ * Action for posts page
  */
 class PostAction extends UserController{
     public function __construct($smarty,$controller){
@@ -430,21 +463,25 @@ class PostAction extends UserController{
         $this->checkStyles($thisUrl);
         
         if(isset($_COOKIE['snow'])){
-            $this->controller->view('snow', $_COOKIE['snow']);
+            $this->controller->view('snow', htmlspecialchars($_COOKIE['snow']));
         }
         if(isset($_COOKIE['dark'])){
-            $this->controller->view('dark', $_COOKIE['dark']);
+            $this->controller->view('dark', htmlspecialchars($_COOKIE['dark']));
         }
 
 
-        $userId = strip_tags($_COOKIE['user_id']);
+        $userId = htmlspecialchars($_COOKIE['user_id']);
         $posts = $this->postModel->getPostByAuthorId($userId);
-        
+        foreach($posts as &$post){
+            foreach($post as &$value){
+                $value = htmlspecialchars($value);
+            }
+        }  
         $this->controller->view('pageTitle', 'Profile Posts Page');
         $this->controller->view('posts', $posts);
-        $this->controller->view('userName', strip_tags($_COOKIE['user_name']));
-        $this->controller->view('userEmail', strip_tags($_COOKIE['user_email']));
-        $this->controller->view('userId', strip_tags($_COOKIE['user_id']));
+        $this->controller->view('userName', htmlspecialchars($_COOKIE['user_name']));
+        $this->controller->view('userEmail', htmlspecialchars($_COOKIE['user_email']));
+        $this->controller->view('userId', htmlspecialchars($_COOKIE['user_id']));
         
         $this->startEngine();
     }
@@ -463,6 +500,7 @@ class PostAction extends UserController{
 
 /**
  * IndexAction
+ * Default controllers action
  */
 class IndexAction extends UserController{    
     
@@ -491,36 +529,36 @@ class IndexAction extends UserController{
         $this->checkStyles($thisUrl);
         
         if(isset($_COOKIE['snow'])){
-            $this->controller->view('snow', $_COOKIE['snow']);
+            $this->controller->view('snow', htmlspecialchars($_COOKIE['snow']));
         }
         if(isset($_COOKIE['dark'])){
-            $this->controller->view('dark', $_COOKIE['dark']);
+            $this->controller->view('dark', htmlspecialchars($_COOKIE['dark']));
         }
 
 
         if(isset($_SESSION["user_upd_id_err"])){
-            $this->controller->view('id_err', $_SESSION["user_upd_id_err"]);
+            $this->controller->view('id_err', htmlspecialchars($_SESSION["user_upd_id_err"]));
         }
         if(isset($_SESSION["user_upd_name_err"])){
-            $this->controller->view('name_err', $_SESSION["user_upd_name_err"]);
+            $this->controller->view('name_err', htmlspecialchars($_SESSION["user_upd_name_err"]));
         }
         if(isset($_SESSION["user_upd_phone_err"])){
-            $this->controller->view('phone_err', $_SESSION["user_upd_phone_err"]);
+            $this->controller->view('phone_err', htmlspecialchars($_SESSION["user_upd_phone_err"]));
         }
         if(isset($_SESSION["user_upd_newpass_err"])){
-            $this->controller->view('newpass_err', $_SESSION["user_upd_newpass_err"]);
+            $this->controller->view('newpass_err', htmlspecialchars($_SESSION["user_upd_newpass_err"]));
         }
         if(isset($_SESSION["user_upd_oldpass_err"])){
-            $this->controller->view('oldpass_err', $_SESSION["user_upd_oldpass_err"]);
+            $this->controller->view('oldpass_err', htmlspecialchars($_SESSION["user_upd_oldpass_err"]));
         }
 
 
         $userPhone = $this->userModel->getPhoneByEmail($_COOKIE['user_email']);
         $this->controller->view('pageTitle', 'Profile Page');
-        $this->controller->view('userName', strip_tags($_COOKIE['user_name']));
-        $this->controller->view('userEmail', strip_tags($_COOKIE['user_email']));
-        $this->controller->view('userId', strip_tags($_COOKIE['user_id']));
-        $this->controller->view('userPhone', strip_tags($userPhone));
+        $this->controller->view('userName', htmlspecialchars($_COOKIE['user_name']));
+        $this->controller->view('userEmail', htmlspecialchars($_COOKIE['user_email']));
+        $this->controller->view('userId', htmlspecialchars($_COOKIE['user_id']));
+        $this->controller->view('userPhone', htmlspecialchars($userPhone));
         
         $this->startEngine();
     }
@@ -541,6 +579,7 @@ class IndexAction extends UserController{
 
 /**
  * UpdateUserAction
+ * Action for update user data
  */
 class UpdateUserAction extends UserController{
     /**
@@ -572,11 +611,11 @@ class UpdateUserAction extends UserController{
         
         // Process form
         $data = [
-            'newName' => strip_tags($_POST['new_name']),
-            'newPhone' => strip_tags($_POST['new_phone']),
-            'userId' => strip_tags($_POST['userId']),
-            'newPass' => strip_tags($_POST['new_pass']),
-            'oldPass' => strip_tags($_POST['pass']),
+            'newName' => $_POST['new_name'],
+            'newPhone' => $_POST['new_phone'],
+            'userId' => $_POST['userId'],
+            'newPass' => $_POST['new_pass'],
+            'oldPass' => $_POST['pass'],
             'name_err' => '',
             'phone_err' => '',
             'id_err' => '',
@@ -585,10 +624,7 @@ class UpdateUserAction extends UserController{
         ];
 
         //removing spaces 
-        $data['newName'] = preg_replace('/\s+/', '', $data['newName']);
         $data['newPhone'] = preg_replace('/\s+/', '', $data['newPhone']);
-        $data['newPass'] = preg_replace('/\s+/', '', $data['newPass']);
-        $data['oldPass'] = preg_replace('/\s+/', '', $data['oldPass']);
         $data['userId'] = preg_replace('/\s+/', '', $data['userId']);
 
         // Validate name
@@ -596,15 +632,8 @@ class UpdateUserAction extends UserController{
             $_SESSION["user_upd_name_err"] = 'Please inform your name';
             $data['name_err'] = 'Please inform your name';
         } else {
-            // Check name
-            if ( !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $data['newName']) ) {
-                $_SESSION["user_upd_name_err"] = 'Špatný obor hodnot! Přiklad "Abdykarov123"';
-                $data['name_err'] = 'Špatný obor hodnot! Přiklad "Abdykarov123"';
-            }
-            else{
-                unset($_SESSION["user_upd_name_err"]);
-                $data['name_err'] = '';
-            }
+            unset($_SESSION["user_upd_name_err"]);
+            $data['name_err'] = '';  
         }
 
         // Validate if empty
@@ -649,9 +678,6 @@ class UpdateUserAction extends UserController{
         } elseif ( strlen($data['newPass']) < 6 ) {
            $_SESSION["user_upd_newpass_err"] = 'Heslo musí být nejméně 6 znaků';
            $data['newPass_err'] = 'Heslo musí být nejméně 6 znaků';
-        }elseif(!ctype_digit($data['newPass'])){
-           $_SESSION["user_upd_newpass_err"] = 'Heslo musí být 0-9';
-           $data['newPass_err'] = 'Heslo musí být 0-9';
         }
         else{
             unset($_SESSION["user_reg_pass_err"]);
@@ -662,10 +688,7 @@ class UpdateUserAction extends UserController{
         if ( empty($data['oldPass']) ) {
             $_SESSION["user_upd_oldpass_err"] = 'Please inform your password';
             $data['oldPass_err'] = 'Please inform your password';
-        } elseif(!ctype_digit($data['oldPass'])){
-            $_SESSION["user_upd_oldpass_err"] = 'Heslo musí být 0-9';
-            $data['oldPass_err'] = 'Heslo musí být 0-9';
-        }else if (!password_verify($data['oldPass'], $this->userModel->getPasswordById($data['userId']))) {
+        } else if (!password_verify($data['oldPass'], $this->userModel->getPasswordById($data['userId']))) {
             $_SESSION["user_upd_oldpass_err"] = 'Heslo neodpovídá';
             $data['oldPass_err'] = 'Heslo neodpovídá';
         }else{
@@ -746,47 +769,47 @@ class RegisterAction extends UserController{
         $this->checkStyles($thisUrl);
         
         if(isset($_COOKIE['snow'])){
-            $this->controller->view('snow', $_COOKIE['snow']);
+            $this->controller->view('snow', htmlspecialchars($_COOKIE['snow']));
         }
         if(isset($_COOKIE['dark'])){
-            $this->controller->view('dark', $_COOKIE['dark']);
+            $this->controller->view('dark', htmlspecialchars($_COOKIE['dark']));
         }
 
 
         $this->controller->view('pageTitle', 'Register Page');
         if(isset($_SESSION["user_reg_name_err"])){
-            $this->controller->view('name_err', $_SESSION["user_reg_name_err"]);
+            $this->controller->view('name_err', htmlspecialchars($_SESSION["user_reg_name_err"]));
         }
         if(isset($_SESSION["user_reg_surname_err"])){
-            $this->controller->view('surname_err', $_SESSION["user_reg_surname_err"]);
+            $this->controller->view('surname_err', htmlspecialchars($_SESSION["user_reg_surname_err"]));
         }
         if(isset($_SESSION["user_reg_email_err"])){
-            $this->controller->view('email_err', $_SESSION["user_reg_email_err"]);
+            $this->controller->view('email_err', htmlspecialchars($_SESSION["user_reg_email_err"]));
         }
         if(isset($_SESSION["user_reg_phone_err"])){
-            $this->controller->view('phone_err', $_SESSION["user_reg_phone_err"]);
+            $this->controller->view('phone_err', htmlspecialchars($_SESSION["user_reg_phone_err"]));
         }
         if(isset($_SESSION["user_reg_pass_err"])){
-            $this->controller->view('pass_err', $_SESSION["user_reg_pass_err"]);
+            $this->controller->view('pass_err', htmlspecialchars($_SESSION["user_reg_pass_err"]));
         }
         if(isset($_SESSION["user_reg_confirm_err"])){
-            $this->controller->view('confirm_err', $_SESSION["user_reg_confirm_err"]);
+            $this->controller->view('confirm_err', htmlspecialchars($_SESSION["user_reg_confirm_err"]));
         }
         if(isset($_SESSION["form_err"])){
-            $this->controller->view('form_err', $_SESSION["form_err"]);
+            $this->controller->view('form_err', htmlspecialchars($_SESSION["form_err"]));
         }
 
         if(isset($_SESSION["user_reg_name"])){
-            $this->controller->view('user_reg_name', $_SESSION["user_reg_name"]);
+            $this->controller->view('user_reg_name', htmlspecialchars($_SESSION["user_reg_name"]));
         }
         if(isset($_SESSION["user_reg_surname"])){
-            $this->controller->view('user_reg_surname', $_SESSION["user_reg_surname"]);
+            $this->controller->view('user_reg_surname', htmlspecialchars($_SESSION["user_reg_surname"]));
         }
         if(isset($_SESSION["user_reg_phone"])){
-            $this->controller->view('user_reg_phone', $_SESSION["user_reg_phone"]);
+            $this->controller->view('user_reg_phone', htmlspecialchars($_SESSION["user_reg_phone"]));
         }
         if(isset($_SESSION["user_reg_email"])){
-            $this->controller->view('user_reg_email', $_SESSION["user_reg_email"]);
+            $this->controller->view('user_reg_email', htmlspecialchars($_SESSION["user_reg_email"]));
         }
 
         
@@ -809,6 +832,7 @@ class RegisterAction extends UserController{
 
 /**
  * AddUserAction
+ * Action for user registration
  */
 class AddUserAction extends UserController{
     
@@ -836,12 +860,12 @@ class AddUserAction extends UserController{
         
         // Process form
         $data = [
-            'name' => strip_tags($_POST['name']),
-            'surname' => strip_tags($_POST['last_name']),
-            'phone' => strip_tags($_POST['phone']),
-            'email' => strip_tags($_POST['email']),
-            'password' => strip_tags($_POST['pass']),
-            'confirm_password' => strip_tags($_POST['pass_confirm']),
+            'name' => $_POST['name'],
+            'surname' => $_POST['last_name'],
+            'phone' => $_POST['phone'],
+            'email' => $_POST['email'],
+            'password' => $_POST['pass'],
+            'confirm_password' => $_POST['pass_confirm'],
             'name_err' => '',
             'surname_err' => '',
             'phone_err' => '',
@@ -852,27 +876,16 @@ class AddUserAction extends UserController{
         ];
 
         //removing spaces 
-        $data['name'] = preg_replace('/\s+/', '', $data['name']);
-        $data['surname'] = preg_replace('/\s+/', '', $data['surname']);
         $data['phone'] = preg_replace('/\s+/', '', $data['phone']);
         $data['email'] = preg_replace('/\s+/', '', $data['email']);
-        $data['password'] = preg_replace('/\s+/', '', $data['password']);
-        $data['confirm_password'] = preg_replace('/\s+/', '', $data['confirm_password']);
 
         // Validate name
         if ( empty($data['name']) ) {
             $_SESSION["user_reg_name_err"] = 'Please inform your name';
             $data['name_err'] = 'Please inform your name';
         } else {
-            // Check name
-            if ( !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $data['name']) ) {
-                $_SESSION["user_reg_name_err"] = 'Špatný obor hodnot! Přiklad "Abdykarov123"';
-                $data['name_err'] = 'Špatný obor hodnot! Přiklad "Abdykarov123"';
-            }
-            else{
-                unset($_SESSION["user_reg_name_err"]);
-                $data['name_err'] = '';
-            }
+            unset($_SESSION["user_reg_name_err"]);
+            $data['name_err'] = '';
         }
 
         // Validate name
@@ -880,15 +893,10 @@ class AddUserAction extends UserController{
             $_SESSION["user_reg_surname_err"] = 'Please inform your surname';
             $data['surname_err'] = 'Please inform your name';
         } else {
-            // Check name
-            if ( !preg_match('/[A-Za-z].*[0-9]|[0-9].*[A-Za-z]/', $data['surname']) ) {
-                $_SESSION["user_reg_surname_err"] = 'Špatný obor hodnot! Přiklad "Abdykarov123"';
-                $data['surname_err'] = 'Špatný obor hodnot! Přiklad "Abdykarov123"';
-            }
-            else{
-                unset($_SESSION["user_reg_surname_err"]);
-                $data['surname_err'] = '';
-            }
+    
+            unset($_SESSION["user_reg_surname_err"]);
+            $data['surname_err'] = '';
+    
         }
         
         // Validate if empty
@@ -933,9 +941,6 @@ class AddUserAction extends UserController{
         } elseif ( strlen($data['password']) < 6 ) {
            $_SESSION["user_reg_pass_err"] = 'Heslo musí být nejméně 6 znaků';
            $data['password_err'] = 'Heslo musí být nejméně 6 znaků';
-        }elseif(!ctype_digit($data['password'])){
-           $_SESSION["user_reg_pass_err"] = 'Heslo musí být 0-9';
-           $data['password_err'] = 'Heslo musí být 0-9';
         }
         else{
             unset($_SESSION["user_reg_pass_err"]);
@@ -946,10 +951,7 @@ class AddUserAction extends UserController{
         if ( empty($data['confirm_password']) ) {
             $_SESSION["user_reg_confirm_err"] = 'Please inform your password';
             $data['confirm_password_err'] = 'Please inform your password';
-        } elseif(!ctype_digit($data['confirm_password'])){
-            $_SESSION["user_reg_confirm_err"] = 'Heslo musí být 0-9';
-            $data['confirm_password_err'] = 'Heslo musí být 0-9';
-        }
+        } 
          else if ( $data['password'] != $data['confirm_password'] ) {
             $_SESSION["user_reg_confirm_err"] = 'Heslo neodpovídá!';
             $data['confirm_password_err'] = 'Heslo neodpovídá!';
@@ -991,6 +993,7 @@ class AddUserAction extends UserController{
 
 /**
  * LoginAction 
+ * Action for login interface
  */
 class LoginAction extends UserController{
  
@@ -1015,23 +1018,23 @@ class LoginAction extends UserController{
         $this->checkStyles($thisUrl);
         
         if(isset($_COOKIE['snow'])){
-            $this->controller->view('snow', $_COOKIE['snow']);
+            $this->controller->view('snow', htmlspecialchars($_COOKIE['snow']));
         }
         if(isset($_COOKIE['dark'])){
-            $this->controller->view('dark', $_COOKIE['dark']);
+            $this->controller->view('dark', htmlspecialchars($_COOKIE['dark']));
         }
 
         //errors
         if(isset($_SESSION["user_login_email_err"])){
-            $this->controller->view('email_err', strip_tags($_SESSION["user_login_email_err"]));
+            $this->controller->view('email_err', htmlspecialchars($_SESSION["user_login_email_err"]));
         }
         if(isset($_SESSION["user_login_pass_err"])){
-            $this->controller->view('pass_err', strip_tags($_SESSION["user_login_pass_err"]));
+            $this->controller->view('pass_err', htmlspecialchars($_SESSION["user_login_pass_err"]));
         }
         
         //values
         if(isset($_SESSION["user_login_email"])){
-            $this->controller->view('user_login_email', strip_tags($_SESSION["user_login_email"]));
+            $this->controller->view('user_login_email', htmlspecialchars($_SESSION["user_login_email"]));
         }
 
 
@@ -1055,6 +1058,7 @@ class LoginAction extends UserController{
 
 /**
  * LoginUserAction
+ * Action for login into account
  */
 class LoginUserAction extends UserController{
             
@@ -1081,8 +1085,8 @@ class LoginUserAction extends UserController{
 
         // Process form
         $data = [
-            'email' => strip_tags($_POST['email']),
-            'password' => strip_tags($_POST['password']), 
+            'email' => $_POST['email'],
+            'password' => $_POST['password'], 
             'email_err' => '',
             'confirm_password_err' => '',
             'password_err' => ''

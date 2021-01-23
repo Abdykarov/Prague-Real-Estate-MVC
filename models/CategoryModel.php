@@ -11,14 +11,21 @@ class Category{
 
     /**
      * initDatabase
-     *
+     * Assigns a database to local object
      * @param  mixed $db
      * @return void
      */
     public function initDatabase($db){
         $this->db = $db;
     }
-
+    
+    /**
+     * initPostModel
+     * Assigns a postmodel and db to local objects
+     * @param  mixed $postModel
+     * @param  mixed $db
+     * @return void
+     */
     public function initPostModel($postModel, $db){  
         $this->db = $db;
         $this->postModel = $postModel;
@@ -27,7 +34,7 @@ class Category{
 
     /**
      * getCategoryById
-     *
+     * Finds category by category id and returns category to controller
      * @param  mixed $categoryId
      * @return void
      */
@@ -50,7 +57,7 @@ class Category{
     
     /**
      * getBreadcrumbs
-     *
+     * Finds all parent categories of category and returns them to the controller
      * @param  mixed $categoryId
      * @return void
      */
@@ -73,7 +80,13 @@ class Category{
 
         return $breadcrumbs;
     }
-
+    
+    /**
+     * getBreadcrumbsByPostId
+     * Finds all parent categories of category by post id and returns them to the controller
+     * @param  mixed $postId
+     * @return void
+     */
     public function getBreadcrumbsByPostId($postId){
         $breadcrumbs = array();
         $post = $this->postModel->getPostById($postId);
@@ -95,7 +108,13 @@ class Category{
         return $breadcrumbs;
     }
     
-    
+        
+    /**
+     * getGrandChildrensForCategory
+     * Finds child categories by category id and returns them
+     * @param  mixed $categoryId
+     * @return void
+     */
     public function getGrandChildrensForCategory($categoryId){
         $categories = array();
         $sql = "SELECT CategoryId, ParentCategoryId, CategoryName FROM categories WHERE ParentCategoryId = :categoryId";
@@ -120,7 +139,7 @@ class Category{
 
     /**
      * getChildForCategory
-     *
+     * Finds child categories by category id and returns them
      * @param  mixed $category
      * @return void
      */
@@ -149,7 +168,7 @@ class Category{
     
     /**
      * getAllCategories
-     *
+     * Finds all categories and returns them
      * @param  mixed $id
      * @return void
      */
@@ -177,7 +196,7 @@ class Category{
     
     /**
      * getMainCategories
-     *
+     * Finds main categories and returns them
      * @param  mixed $id
      * @return void
      */
@@ -202,7 +221,7 @@ class Category{
     
     /**
      * getChildCategory
-     *
+     * Finds child categories by category id and returns them
      * @param  mixed $categoryId
      * @return void
      */
@@ -226,7 +245,7 @@ class Category{
     
     /**
      * getCategoryName
-     *
+     * Finds category name by category id and returns them
      * @param  mixed $categoryId
      * @return void
      */
@@ -250,7 +269,7 @@ class Category{
         
     /**
      * categoryHasChild
-     *
+     * Checks if category has child or not
      * @param  mixed $categoryId
      * @return void
      */
@@ -273,8 +292,8 @@ class Category{
     }
 
     /**
-     * categoryHasChild
-     *
+     * categoryHasParent
+     * Checks if category has parent category or not
      * @param  mixed $categoryId
      * @return void
      */
@@ -300,7 +319,7 @@ class Category{
     
     /**
      * getPosts
-     *
+     * Get all posts by category id including child posts
      * @param  mixed $categoryId
      * @param  mixed $post
      * @return void
@@ -336,7 +355,13 @@ class Category{
         }
         return $posts;
     }
-
+    
+    /**
+     * createCategory
+     * Insert new category into db
+     * @param  mixed $data
+     * @return void
+     */
     public function createCategory($data){
 
         $sql = "INSERT INTO categories (CategoryName, ParentCategoryId, CategoryImage) VALUES ( :categoryName, :parentId, :categoryImage )";

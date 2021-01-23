@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-15 02:51:02
+/* Smarty version 3.1.36, created on 2021-01-22 14:02:04
   from '/home/abdykili/www/views/default/registration.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_60010316c00446_44319476',
+  'unifunc' => 'content_600adadcd857d9_24816451',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '78a1168f83f1cd67e2af5399f8eceb52bb9d5269' => 
     array (
       0 => '/home/abdykili/www/views/default/registration.tpl',
-      1 => 1610677753,
+      1 => 1611324118,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_60010316c00446_44319476 (Smarty_Internal_Template $_smarty_tpl) {
+function content_600adadcd857d9_24816451 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="register_section">
     <div class="wrapper">
         <h1>Registrace</h1>
@@ -31,7 +31,7 @@ function content_60010316c00446_44319476 (Smarty_Internal_Template $_smarty_tpl)
                         <div class="row">
                             <div class="col s4">
                                 <label for="name"><span class="must">*</span>Jmemo [Musi byt A-Z a-z 9-0]</label>
-                                <input id="name" required pattern="[A-Za-z0-9]+" name="name" type="text" class="validate" 
+                                <input id="name" required pattern="[A-Za-z0-9\s]+" name="name" type="text" class="validate" 
                                 value="<?php if ((isset($_smarty_tpl->tpl_vars['user_reg_name']->value))) {
 echo $_smarty_tpl->tpl_vars['user_reg_name']->value;
 }?>">
@@ -44,7 +44,7 @@ echo $_smarty_tpl->tpl_vars['user_reg_name']->value;
                             </div>
                             <div class="col s4">
                                 <label for="last_name"><span class="must">*</span>Přijmení [Musi byt A-Z a-z 9-0]</label>
-                                <input id="last_name" required pattern="[A-Za-z0-9]+" name="last_name" type="text"  class="validate"
+                                <input id="last_name" required pattern="[A-Za-z0-9\s]+" name="last_name" type="text"  class="validate"
                                 value="<?php if ((isset($_smarty_tpl->tpl_vars['user_reg_surname']->value))) {
 echo $_smarty_tpl->tpl_vars['user_reg_surname']->value;
 }?>">
@@ -89,7 +89,7 @@ echo $_smarty_tpl->tpl_vars['user_reg_email']->value;
                             
                             <div class=" col s4">
                                 <label for="pass"><span class="must">*</span>Heslo [Musi byt 9-0]</label>
-                                <input id="pass" name="pass" required pattern="[0-9]+" type="password" class="validate pass_input">
+                                <input id="pass" name="pass" required pattern="[A-Za-z0-9\s]+" type="password" class="validate pass_input">
                                 <div class="error_handler pass_error">
                                     <?php if ((isset($_smarty_tpl->tpl_vars['pass_err']->value))) {?>
                                         <?php echo $_smarty_tpl->tpl_vars['pass_err']->value;?>
@@ -100,7 +100,7 @@ echo $_smarty_tpl->tpl_vars['user_reg_email']->value;
 
                             <div class=" col s4">
                                 <label for="pass_confirm"><span class="must">*</span>Potvrzení hesla [Musi byt 9-0]</label>
-                                <input id="pass_confirm" name="pass_confirm" required pattern="[0-9]+" type="password" class="pass_confirm_input validate">
+                                <input id="pass_confirm" name="pass_confirm" required pattern="[A-Za-z0-9\s]+" type="password" class="pass_confirm_input validate">
                                 <div class="error_handler pass_confirm_error">
                                     <?php if ((isset($_smarty_tpl->tpl_vars['confirm_err']->value))) {?>
                                         <?php echo $_smarty_tpl->tpl_vars['confirm_err']->value;?>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-15 05:43:05
+/* Smarty version 3.1.36, created on 2021-01-22 15:04:12
   from '/home/abdykili/www/views/default/post-add.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_60012b69afe5f1_85401905',
+  'unifunc' => 'content_600ae96c6cefa8_57381413',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9411fd3153cbe6336247be2bfd77fdbf1a7080a8' => 
     array (
       0 => '/home/abdykili/www/views/default/post-add.tpl',
-      1 => 1610689359,
+      1 => 1611327850,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_60012b69afe5f1_85401905 (Smarty_Internal_Template $_smarty_tpl) {
+function content_600ae96c6cefa8_57381413 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="profile_section">
     <div class="wrapper">   
         <div class="row">
@@ -78,7 +78,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     <div class="row">
                         <div class="col s6">
                             <label for="name"><span class="must">*</span> Název</label>
-                            <input id="name" name="name" required pattern="[A-Za-z0-9]+" type="text" class="validate"
+                            <input id="name" name="name" required pattern="[A-Za-z0-9\s]+" type="text" class="validate"
                             value="<?php if ((isset($_smarty_tpl->tpl_vars['post_add_name']->value))) {
 echo $_smarty_tpl->tpl_vars['post_add_name']->value;
 }?>">
@@ -108,7 +108,7 @@ echo $_smarty_tpl->tpl_vars['post_add_price']->value;
                     <div class="row">
                         <div class="col s6">
                             <label for="address"><span class="must">*</span> Adresa v Praze</label>
-                            <input id="address" name="address" required pattern="[A-Za-z0-9]+" type="text" class="validate"
+                            <input id="address" name="address" required pattern="[A-Za-z0-9\s]+" type="text" class="validate"
                             value="<?php if ((isset($_smarty_tpl->tpl_vars['post_add_address']->value))) {
 echo $_smarty_tpl->tpl_vars['post_add_address']->value;
 }?>">
@@ -157,19 +157,40 @@ echo $_smarty_tpl->tpl_vars['post_add_desc']->value;
                     <h4><span class="must">*</span>Forma vlastnictví</h4>
                     <div class="row post_flex">
                         <label>
-                            <input name="owner" value="Osobní" type="radio" />
+                            <input name="owner" value="Osobní" type="radio" 
+                            <?php if ((isset($_smarty_tpl->tpl_vars['post_add_owner']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_owner']->value == 'Osobní') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>
+                            />
                             <span>Osobní</span>
                         </label>
                         <label>
-                            <input name="owner" value="Družstevní" type="radio" />
+                            <input name="owner" value="Družstevní" type="radio" 
+                            <?php if ((isset($_smarty_tpl->tpl_vars['post_add_owner']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_owner']->value == 'Družstevní') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Družstevní</span>
                         </label>
                         <label>
-                            <input name="owner" value="S.r.o." type="radio" />
+                            <input name="owner" value="S.r.o." type="radio" 
+                            <?php if ((isset($_smarty_tpl->tpl_vars['post_add_owner']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_owner']->value == 'S.r.o.') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>S.r.o.</span>
                         </label>
                         <label>
-                            <input name="owner" value="Jiný" type="radio" />
+                            <input name="owner" value="Jiný" type="radio" 
+                            <?php if ((isset($_smarty_tpl->tpl_vars['post_add_owner']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_owner']->value == 'Jiný') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Jiný</span>
                         </label>
                     </div>
@@ -182,35 +203,67 @@ echo $_smarty_tpl->tpl_vars['post_add_desc']->value;
                     <h4><span class="must">*</span>Stav nemovitosti</h4>
                     <div class="row post_flex">
                          <label>
-                            <input name="cond" value="Novostavba" type="radio" />
+                            <input name="cond" value="Novostavba" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_cond']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_cond']->value == 'Novostavba') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Novostavba</span>
                         </label>
                          <label>
-                            <input name="cond" value="Ve výstavbě" type="radio" />
+                            <input name="cond" value="Ve výstavbě" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_cond']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_cond']->value == 'Ve výstavbě') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Ve výstavbě</span>
                         </label>
                          <label>
-                            <input name="cond" value="Dobrý stav" type="radio" />
+                            <input name="cond" value="Dobrý stav" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_cond']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_cond']->value == 'Dobrý stav') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Dobrý stav</span>
                         </label>
                          <label>
-                            <input name="cond" value="Udržovaný" type="radio" />
+                            <input name="cond" value="Udržovaný" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_cond']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_cond']->value == 'Udržovaný') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Udržovaný</span>
                         </label>
                          <label>
-                            <input name="cond" value="Špatný stav" type="radio" />
+                            <input name="cond" value="Špatný stav" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_cond']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_cond']->value == 'Špatný stav') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Špatný stav</span>
                         </label>
                          <label>
-                            <input name="cond" value="Po rekonstrukci" type="radio" />
+                            <input name="cond" value="Po rekonstrukci" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_cond']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_cond']->value == 'Po rekonstrukci') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Po rekonstrukci</span>
                         </label>
                          <label>
-                            <input name="cond" value="Před rekonstrukci" type="radio" />
+                            <input name="cond" value="Před rekonstrukci" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_cond']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_cond']->value == 'Před rekonstrukci') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Před rekonstrukci</span>
                         </label>
                          <label>
-                            <input name="cond" value="K demolici" type="radio" />
+                            <input name="cond" value="K demolici" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_cond']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_cond']->value == 'K demolici') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>K demolici</span>
                         </label>
                     </div>
@@ -223,31 +276,59 @@ echo $_smarty_tpl->tpl_vars['post_add_desc']->value;
                     <h4><span class="must">*</span>Konstrukce</h4>
                     <div class="row post_flex">
                         <label>
-                            <input name="const" value="Cihlová" type="radio" />
+                            <input name="const" value="Cihlová" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_const']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_const']->value == 'Cihlová') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Cihlová</span>
                         </label>
                         <label>
-                            <input name="const" value="Panelová" type="radio" />
+                            <input name="const" value="Panelová" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_const']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_const']->value == 'Panelová') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Panelová</span>
                         </label>
                         <label>
-                            <input name="const" value="Dřevěná" type="radio" />
+                            <input name="const" value="Dřevěná" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_const']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_const']->value == 'Dřevěná') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Dřevěná</span>
                         </label>
                         <label>
-                            <input name="const" value="Kamenná" type="radio" />
+                            <input name="const" value="Kamenná" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_const']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_const']->value == 'Kamenná') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Kamenná</span>
                         </label>
                         <label>
-                            <input name="const" value="Skeletová" type="radio" />
+                            <input name="const" value="Skeletová" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_const']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_const']->value == 'Skeletová') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Skeletová</span>
                         </label>
                         <label>
-                            <input name="const" value="Montovaná" type="radio" />
+                            <input name="const" value="Montovaná" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_const']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_const']->value == 'Montovaná') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Montovaná</span>
                         </label>
                         <label>
-                            <input name="const" value="Smíšená" type="radio" />
+                            <input name="const" value="Smíšená" type="radio" <?php if ((isset($_smarty_tpl->tpl_vars['post_add_const']->value))) {?>
+                                <?php if ($_smarty_tpl->tpl_vars['post_add_const']->value == 'Smíšená') {?>
+                                    checked="checked"
+                                <?php }?>
+                            <?php }?>/>
                             <span>Smíšená</span>
                         </label>
                     </div>

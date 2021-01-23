@@ -1,15 +1,28 @@
 <?php
 
 /**
- * User
+ * User model - responsed for manipulating with user data
  */
 class User{
     private $db;
-
+    
+    /**
+     * initDatabase
+     * Assigns a database to local object
+     * @param  mixed $db
+     * @return void
+     */
     public function initDatabase($db){
         $this->db = $db;
     }
-    
+        
+    /**
+     * getFirstMessageGroup
+     * Returns messageGroup array by users id
+     * @param  mixed $toUser
+     * @param  mixed $fromUser
+     * @return void
+     */
     public function getFirstMessageGroup($toUser,$fromUser){
         $group = array();
         $sql = "SELECT * FROM messageGroups WHERE FromUser = :fromUser AND ToUser = :toUser";
@@ -26,7 +39,13 @@ class User{
         }
         return $group;        
     }
-
+    
+    /**
+     * hasMessageGroup
+     * Check if users already have message group
+     * @param  mixed $data
+     * @return void
+     */
     public function hasMessageGroup($data){
         $test1 = $this->getFirstMessageGroup($data['postAuthorId'],$data['userId']);
         $test2 = $this->getFirstMessageGroup($data['userId'],$data['postAuthorId']);
@@ -39,7 +58,13 @@ class User{
         }
     }
 
-
+    
+    /**
+     * registerMessage
+     * Insert new message to database
+     * @param  mixed $data
+     * @return void
+     */
     public function registerMessage($data){
         $this->db->query('INSERT INTO messages (MessageGroup, FromUser, MessageText, MessageDate) values (:messageGroup, :fromUser, :messageText, :messageDate)');
         // Bind values
@@ -54,7 +79,13 @@ class User{
             return False;
         }
     }
-
+    
+    /**
+     * registerMessageGroup
+     * Insert new message group to database
+     * @param  mixed $data
+     * @return void
+     */
     public function registerMessageGroup($data){
 
         $this->db->query('INSERT INTO messageGroups (FromUser, ToUser, LastMessage) values (:FromUser, :ToUser, :messageDate)');
@@ -82,7 +113,13 @@ class User{
             return False;
         }
     }    
-
+    
+    /**
+     * registerUser
+     * Insert new user to db
+     * @param  mixed $data
+     * @return void
+     */
     public function registerUser($data)
     {
         $this->db->query('INSERT INTO users (Name, Surname, Phone, Email, Password) values (:name, :surname, :phone, :email, :password)');
@@ -100,7 +137,13 @@ class User{
             return 0;
         }
     }
-
+    
+    /**
+     * updateUser
+     * Updata user data
+     * @param  mixed $data
+     * @return void
+     */
     public function updateUser($data){
 
         $sql = 'UPDATE users SET Name = :userName, Phone = :userPhone, Password = :userPass WHERE Id = :userId';
@@ -121,7 +164,13 @@ class User{
 
     }
 
-
+    
+    /**
+     * registerAdmin
+     * Insert admin data to db
+     * @param  mixed $data
+     * @return void
+     */
     public function registerAdmin($data)
     {
         $this->db->query('INSERT INTO admin (Email, Password) values (:email, :password)');
@@ -137,7 +186,13 @@ class User{
         }
     }
     
-    
+        
+    /**
+     * getUser
+     * Finds user by id and returns him to controller
+     * @param  mixed $postId
+     * @return void
+     */
     public function getUser($postId){
         $sql = "SELECT * FROM users WHERE Id = :postId";
         
@@ -154,7 +209,7 @@ class User{
 
     /**
      * getUserByEmail
-     *
+     * Finds user by email and returns him to controller
      * @param  mixed $email
      * @return void
      */
@@ -172,7 +227,13 @@ class User{
             return $row['Id'];
         }
     }
-
+    
+    /**
+     * getPasswordByEmail
+     * Finds password by email and returns him to controller
+     * @param  mixed $email
+     * @return void
+     */
     public function getPasswordByEmail($email){
 
         $sql = "SELECT * FROM users WHERE Email = :email";
@@ -187,7 +248,13 @@ class User{
             return $row['Password'];
         }
     }
-
+    
+    /**
+     * getPasswordById
+     * Finds password by id and returns him to controller
+     * @param  mixed $id
+     * @return void
+     */
     public function getPasswordById($id){
 
         $sql = "SELECT * FROM users WHERE Id = :id";
@@ -202,7 +269,13 @@ class User{
             return $row['Password'];
         }
     }
-
+    
+    /**
+     * getAdminPasswordByEmail
+     * Finds admin password by email and returns him to controller
+     * @param  mixed $email
+     * @return void
+     */
     public function getAdminPasswordByEmail($email){
 
         $sql = "SELECT * FROM admin WHERE Email = :email";
@@ -217,7 +290,13 @@ class User{
             return $row['Password'];
         }
     }
-
+    
+    /**
+     * getNameByEmail
+     * Finds name by email and returns him to controller
+     * @param  mixed $email
+     * @return void
+     */
     public function getNameByEmail($email){
         $sql = "SELECT * FROM users WHERE Email = :email";
         
@@ -231,7 +310,13 @@ class User{
             return $row['Name'];
         }
     }
-    
+        
+    /**
+     * getPhoneByEmail
+     * Finds phone by email and returns him to controller
+     * @param  mixed $email
+     * @return void
+     */
     public function getPhoneByEmail($email){
         $sql = "SELECT * FROM users WHERE Email = :email";
         
@@ -245,7 +330,13 @@ class User{
             return $row['Phone'];
         }
     }
-
+    
+    /**
+     * getMessagesGroup
+     * Finds message group by user id and returns him to controller
+     * @param  mixed $userId
+     * @return void
+     */
     public function getMessagesGroup($userId){
         $groups = array();
         $sql = "SELECT * FROM messageGroups WHERE FromUser = :userId OR ToUser = :userId";
@@ -270,7 +361,13 @@ class User{
         }
         return $groups;
     }
-
+    
+    /**
+     * getMessageGroup
+     * Finds message group by id and returns him to controller
+     * @param  mixed $groupMessageId
+     * @return void
+     */
     public function getMessageGroup($groupMessageId){
         $groups = array();
         $sql = "SELECT * FROM messageGroups WHERE GroupId = :groupMessageId ";
@@ -285,7 +382,13 @@ class User{
             return $row;
         }
     }
-
+    
+    /**
+     * getMessages
+     * Finds all messages by message group id and returns him to controller
+     * @param  mixed $messageGroupId
+     * @return void
+     */
     public function getMessages($messageGroupId){
         $messages = array();
         $sql = "SELECT * FROM messages WHERE MessageGroup = :messageGroupId";
@@ -300,7 +403,12 @@ class User{
         }
         return $messages;
     }
-
+    
+    /**
+     * getAllUsers
+     * Returns all users from table
+     * @return void
+     */
     public function getAllUsers(){
 
         $users = array();
@@ -316,7 +424,13 @@ class User{
         }
         return $users;
     }
-
+    
+    /**
+     * deleteUser
+     * Delete user from db
+     * @param  mixed $userId
+     * @return void
+     */
     public function deleteUser($userId){
         $sql = "DELETE FROM users WHERE Id = :userId";
         $this->db->query($sql);

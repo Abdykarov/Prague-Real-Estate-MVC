@@ -8,7 +8,7 @@
                         <div class="row">
                             <div class="col s4">
                                 <label for="name"><span class="must">*</span>Jmemo [Musi byt A-Z a-z 9-0]</label>
-                                <input id="name" required pattern="[A-Za-z0-9]+" name="name" type="text" class="validate" 
+                                <input id="name" required pattern="[A-Za-z0-9\s]+" name="name" type="text" class="validate" 
                                 value="{if isset($user_reg_name)}{$user_reg_name}{/if}">
                                 <div class="error_handler name_error">
                                     {if isset($name_err)}
@@ -18,7 +18,7 @@
                             </div>
                             <div class="col s4">
                                 <label for="last_name"><span class="must">*</span>Přijmení [Musi byt A-Z a-z 9-0]</label>
-                                <input id="last_name" required pattern="[A-Za-z0-9]+" name="last_name" type="text"  class="validate"
+                                <input id="last_name" required pattern="[A-Za-z0-9\s]+" name="last_name" type="text"  class="validate"
                                 value="{if isset($user_reg_surname)}{$user_reg_surname}{/if}">
                                 <div class="error_handler surname_error">
                                     {if isset($surname_err)}
@@ -54,7 +54,7 @@
                             
                             <div class=" col s4">
                                 <label for="pass"><span class="must">*</span>Heslo [Musi byt 9-0]</label>
-                                <input id="pass" name="pass" required pattern="[0-9]+" type="password" class="validate pass_input">
+                                <input id="pass" name="pass" required pattern="[A-Za-z0-9\s]+" type="password" class="validate pass_input">
                                 <div class="error_handler pass_error">
                                     {if isset($pass_err)}
                                         {$pass_err}
@@ -64,7 +64,7 @@
 
                             <div class=" col s4">
                                 <label for="pass_confirm"><span class="must">*</span>Potvrzení hesla [Musi byt 9-0]</label>
-                                <input id="pass_confirm" name="pass_confirm" required pattern="[0-9]+" type="password" class="pass_confirm_input validate">
+                                <input id="pass_confirm" name="pass_confirm" required pattern="[A-Za-z0-9\s]+" type="password" class="pass_confirm_input validate">
                                 <div class="error_handler pass_confirm_error">
                                     {if isset($confirm_err)}
                                         {$confirm_err}

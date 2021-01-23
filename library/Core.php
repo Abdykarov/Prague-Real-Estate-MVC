@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Core class
+ * Core class - main methods here
  */
 class Core{
     public $smarty;
@@ -20,7 +20,7 @@ class Core{
     
     /**
      * getController
-     *
+     * 
      * @return void
      */
     public function getController(){
@@ -32,14 +32,20 @@ class Core{
 
     /**
      * loadSmarty
-     *
+     * Assign smarty class to local variable
      * @param  mixed $smarty
      * @return void
      */
     public function loadSmarty($smarty){
         $this->smarty = $smarty;
     }
-
+    
+    /**
+     * redirect
+     * Redirect to another url
+     * @param  mixed $url
+     * @return void
+     */
     public function redirect($url = ""){
         header("Location: http://wa.toad.cz/~abdykili/".$url);
         exit();
@@ -47,7 +53,7 @@ class Core{
     
     /**
      * loadPage
-     *
+     * Inits controller and action
      * @param  mixed $core
      * @param  mixed $controller
      * @param  mixed $action
@@ -63,7 +69,7 @@ class Core{
         
     /**
      * loadTemplate
-     *
+     * 
      * @param  mixed $tmpName
      * @return void
      */
@@ -103,7 +109,7 @@ class Core{
         
     /**
      * deb
-     *
+     * Method for debugging
      * @param  mixed $var
      * @param  mixed $die
      * @return void
@@ -118,7 +124,13 @@ class Core{
         }
     }
 
-
+    
+    /**
+     * checkStyles
+     * Checks whether its dark or snow theme
+     * @param  mixed $url
+     * @return void
+     */
     public function checkStyles($url){
         if(isset($_POST['snow'])){
             if(isset($_COOKIE['snow'])){

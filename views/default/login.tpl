@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="col s12">
                         <label for="password">Password (0-9)</label>
-                        <input id="password" name="password" pattern="[0-9]+" required type="password" class="login_pass validate">
+                        <input id="password" name="password" pattern="[A-Za-z0-9\s]+" required type="password" class="login_pass validate">
                         <div class="error_handler pass_error">
                         {if isset($pass_err)}
                                 {$pass_err}

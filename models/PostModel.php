@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Post Model - class works with post data
+ */
 class Post {
     private $db;
     public $catModel;
@@ -13,7 +16,12 @@ class Post {
     public function initDatabase($db){
         $this->db = $db;
     }
-    
+        
+    /**
+     * getPostsCount
+     * Counts all posts from table and returns its count
+     * @return void
+     */
     public function getPostsCount(){
         $sql = "SELECT * FROM posts";
         $this->db->query($sql);
@@ -22,7 +30,13 @@ class Post {
         $count = $this->db->rowCount();
         return $count;
     }
-
+    
+    /**
+     * getPostsCountByCategoryId
+     * Counts posts by id, and sends count to controller
+     * @param  mixed $categoryId
+     * @return void
+     */
     public function getPostsCountByCategoryId($categoryId){
 
         $sql = "SELECT * FROM posts WHERE CategoryId = :categoryId";
@@ -34,7 +48,13 @@ class Post {
         $count = $this->db->rowCount();
         return $count;
     }
-
+    
+    /**
+     * getPostById
+     * Finds post by id, and sends array to controller
+     * @param  mixed $postId
+     * @return void
+     */
     public function getPostById($postId){
         $posts = array();
         $sql = "SELECT * FROM posts WHERE PostId = :postId";
@@ -56,7 +76,7 @@ class Post {
 
     /**
      * getPostsByCategoryId
-     *
+     * Finds posts by category, and sends them to controller
      * @param  mixed $categoryId
      * @return void
      */
@@ -80,7 +100,7 @@ class Post {
     
     /**
      * getPostByAuthorId
-     *
+     * Finds posts by author, and sends them to controller
      * @param  mixed $authorId
      * @return void
      */
@@ -115,7 +135,7 @@ class Post {
              values ( :postName, :categoryId, :authorId, :postImages, :postDesc, :postArea, :postPrice, :postAddress, :postOwner, :postCond, :postConst, :postDate )');
 
         // Bind values
-        $name = $data['name'].' '.$data['square'].' &#13217;';
+        $name = $data['name'].' '.$data['square'].' m2';
 
         $this->db->bind(':postName', $name);
         $this->db->bind(':postDesc', nl2br($data['desc'])); // nl2br - <br> appends automatically whenever user press enter   
@@ -142,7 +162,7 @@ class Post {
 
     /**
      * getPosts
-     *
+     * Finds posts by filter, and sends them to controller
      * @param  mixed $categoryId
      * @param  mixed $post
      * @return void
@@ -214,7 +234,12 @@ class Post {
         return $posts;
     }
 
-
+    
+    /**
+     * getAllPosts
+     * Finds all posts, and sends them to controller
+     * @return void
+     */
     public function getAllPosts(){
 
         $posts = array();
@@ -230,7 +255,13 @@ class Post {
         }
         return $posts;
     }
-
+    
+    /**
+     * deletePost from table by id
+     *
+     * @param  mixed $postId
+     * @return void
+     */
     public function deletePost($postId){
 
         $sql = "DELETE FROM posts WHERE PostId = :postId";
@@ -245,7 +276,13 @@ class Post {
             return 0;
         }
     }
-
+    
+    /**
+     * giveVip - assigns vip status to the post
+     *
+     * @param  mixed $postId
+     * @return void
+     */
     public function giveVip($postId){
         $sql = "UPDATE posts SET VipStatus = '1' WHERE PostId = :postId";
 
